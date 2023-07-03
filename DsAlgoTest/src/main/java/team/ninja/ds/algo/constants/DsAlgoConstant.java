@@ -2,6 +2,7 @@ package team.ninja.ds.algo.constants;
 
 public class DsAlgoConstant {
 
+	public static final String XL_DATA_FILE_PATH2="src/test/resources/Excel_Register/QueueTestData.xlsx";
 	public static final String XL_DATA_FILE_PATH="src/test/resources/Excel_Register/QueueTestData.xlsx";
 	public static final String queueUrl = "https://dsportalapp.herokuapp.com/queue/";
 	public static final String impOfQPython = "https://dsportalapp.herokuapp.com/queue/implementation-lists/";
