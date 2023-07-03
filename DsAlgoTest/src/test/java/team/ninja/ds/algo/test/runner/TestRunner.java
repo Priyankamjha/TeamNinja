@@ -8,10 +8,10 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 	plugin = {"pretty", "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}, //reporting purpose
 	monochrome=false,  //console output color
 	 //tags from feature file
-	features = {"src/test/resources/Features"},
+	features = {"src/test/resources/Features"}, 
 	tags = " ",	
 	//tags={"@Login"}, //location of feature files (should be in src/test/reso
-	glue={"dsAlgo_StepDefinition","hooks"})//location of  step definition files
+	glue={"team.ninja.ds.algo.step.definitions","team.ninja.ds.algo.hooks"})//location of  step definition files
 	public class TestRunner  extends AbstractTestNGCucumberTests{
 		
 		@Override
