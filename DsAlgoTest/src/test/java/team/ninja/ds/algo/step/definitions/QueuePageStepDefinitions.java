@@ -1,7 +1,7 @@
 package team.ninja.ds.algo.step.definitions;
 
 import static org.testng.Assert.assertEquals;
-import static team.ninja.ds.algo.constants.DsAlgoConstant.XL_DATA_FILE_PATH;
+import static team.ninja.ds.algo.constants.DsAlgoConstant.XL_QDATA_FILE_PATH;
 import static team.ninja.ds.algo.constants.DsAlgoConstant.queueUrl;
 
 import java.util.List;
@@ -14,16 +14,16 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import team.ninja.ds.algo.driver.factory.DriverFactory;
-import team.ninja.ds.algo.page.object.BHomePage;
-import team.ninja.ds.algo.page.object.IQueuePage;
+import team.ninja.ds.algo.page.object.HomePage;
+import team.ninja.ds.algo.page.object.QueuePage;
 import team.ninja.ds.algo.utilities.ExcelReader;
 
-public class IQueuePage_SD {
+public class QueuePageStepDefinitions {
 
-    private static final Logger logger = LogManager.getLogger(IQueuePage_SD.class);
+    private static final Logger logger = LogManager.getLogger(QueuePageStepDefinitions.class);
 
-	private BHomePage homePage = new BHomePage(DriverFactory.getDriver());
-	private IQueuePage qPage = new IQueuePage(DriverFactory.getDriver());
+	private HomePage homePage = new HomePage(DriverFactory.getDriver());
+	private QueuePage qPage = new QueuePage(DriverFactory.getDriver());
 
 	String expectedResult = null;
 	
@@ -73,7 +73,7 @@ public class IQueuePage_SD {
 	@When("The user enter valid python code in tryEditor for queue from sheet {string} and {int}")
 	public void the_user_enter_valid_python_code_in_try_editor_for_queue_from_sheet_and(String sheetName, Integer rowNumber) {
 		ExcelReader excel = new ExcelReader();
-		List<Map<String, String>> list = excel.getData(XL_DATA_FILE_PATH, sheetName);
+		List<Map<String, String>> list = excel.getData(XL_QDATA_FILE_PATH, sheetName);
 		Map<String, String> dataMap = list.get(rowNumber);
 		String pythonCode = dataMap.get("pythonCode");
 		expectedResult = dataMap.get("Result");
@@ -97,7 +97,7 @@ public class IQueuePage_SD {
 	@When("The user enter python code with invalid syntax in tryEditor  for queue from sheet {string} and {int}")
 	public void the_user_enter_python_code_with_invalid_syntax_in_try_editor_for_queue_from_sheet_and(String sheetName, Integer rowNumber) {
 		ExcelReader excel = new ExcelReader();
-		List<Map<String, String>> list = excel.getData(XL_DATA_FILE_PATH, sheetName);
+		List<Map<String, String>> list = excel.getData(XL_QDATA_FILE_PATH, sheetName);
 		Map<String, String> dataMap = list.get(rowNumber);
 		String pythonCode = dataMap.get("pythonCode");
 		expectedResult = dataMap.get("Result");

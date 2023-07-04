@@ -14,18 +14,18 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import team.ninja.ds.algo.driver.factory.DriverFactory;
-import team.ninja.ds.algo.page.object.ALandingPage;
-import team.ninja.ds.algo.page.object.BHomePage;
-import team.ninja.ds.algo.page.object.DLoginPage;
-import team.ninja.ds.algo.page.object.HStackPage;
-import team.ninja.ds.algo.page.object.JTreePage;
+import team.ninja.ds.algo.page.object.LandingPage;
+import team.ninja.ds.algo.page.object.HomePage;
+import team.ninja.ds.algo.page.object.LoginPage;
+import team.ninja.ds.algo.page.object.StackPage;
+import team.ninja.ds.algo.page.object.TreePage;
 import team.ninja.ds.algo.utilities.ExcelReader;
 
-public class JTreePage_SD {
-	private ALandingPage land=new ALandingPage(DriverFactory.getDriver());
-	private BHomePage homepage=new BHomePage (DriverFactory.getDriver());
-	private DLoginPage loginpage=new DLoginPage(DriverFactory.getDriver());
-	private JTreePage treePage=new JTreePage(DriverFactory.getDriver());
+public class TreePageStepDefinitions {
+	private LandingPage land=new LandingPage(DriverFactory.getDriver());
+	private HomePage homepage=new HomePage (DriverFactory.getDriver());
+	private LoginPage loginpage=new LoginPage(DriverFactory.getDriver());
+	private TreePage treePage=new TreePage(DriverFactory.getDriver());
 	private String code;
 	private String actualresult;;
 	private String expectedresult;
@@ -53,7 +53,7 @@ public class JTreePage_SD {
 	@When("The user enter valid python code in tree tryEditor from sheet {string} and {int}")
 	public void the_user_enter_valid_python_code_in_stack_try_editor_from_sheet_and(String SheetName, Integer rowno) throws InvalidFormatException, IOException, InterruptedException{
 		ExcelReader reader=new ExcelReader();	
-		List<Map<String, String>> rdata = reader.getData("./src/test/resources/Excel_Register/programdata.xlsx",SheetName);
+		List<Map<String, String>> rdata = reader.getData("src/test/resources/Test_Data/programdata.xlsx",SheetName);
 		code=rdata.get(rowno).get("Pythoncode");
 		expectedresult=rdata.get(rowno).get("Result");
 		treePage.enter_code(code);
@@ -71,7 +71,7 @@ public class JTreePage_SD {
 	@When("The user enter python code with invalid syntax in tree tryEditor from sheet {string} and {int}")
 	public void the_user_enter_python_code_with_invalid_syntax_in_try_editor_from_sheet_and(String SheetName, Integer rowno) throws InvalidFormatException, IOException, InterruptedException{
 		 ExcelReader reader=new ExcelReader();
-		 List<Map<String, String>> rdata = reader.getData("./src/test/resources/Excel_Register/programdata.xlsx",SheetName);
+		 List<Map<String, String>> rdata = reader.getData("src/test/resources/Test_Data/programdata.xlsx",SheetName);
 		 code=rdata.get(rowno).get("Pythoncode");
 		 expectedresult=rdata.get(rowno).get("Result");
 		 treePage.enter_code(code);   

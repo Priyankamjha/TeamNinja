@@ -9,13 +9,13 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import team.ninja.ds.algo.driver.factory.DriverFactory;
-import team.ninja.ds.algo.page.object.ALandingPage;
-import team.ninja.ds.algo.page.object.BHomePage;
+import team.ninja.ds.algo.page.object.LandingPage;
+import team.ninja.ds.algo.page.object.HomePage;
 
-public class ALandingPage_SD {
+public class LandingPageStepDefinitions {
 
-	private ALandingPage landingPage=new ALandingPage(DriverFactory.getDriver());
-	private BHomePage homePage=new BHomePage(DriverFactory.getDriver());
+	private LandingPage landingPage=new LandingPage(DriverFactory.getDriver());
+	private HomePage homePage=new HomePage(DriverFactory.getDriver());
 	private static String expected,actual;
 	private WebDriver driver=DriverFactory.getDriver();
 	public SoftAssert softAssert = new SoftAssert();

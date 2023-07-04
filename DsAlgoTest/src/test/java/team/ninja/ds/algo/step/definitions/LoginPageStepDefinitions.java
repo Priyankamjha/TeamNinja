@@ -7,17 +7,17 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import team.ninja.ds.algo.driver.factory.DriverFactory;
-import team.ninja.ds.algo.page.object.ALandingPage;
-import team.ninja.ds.algo.page.object.BHomePage;
-import team.ninja.ds.algo.page.object.CRegisterPage;
-import team.ninja.ds.algo.page.object.DLoginPage;
+import team.ninja.ds.algo.page.object.LandingPage;
+import team.ninja.ds.algo.page.object.HomePage;
+import team.ninja.ds.algo.page.object.RegisterPage;
+import team.ninja.ds.algo.page.object.LoginPage;
 import team.ninja.ds.algo.utilities.ConfigReader;
 
-public class DLoginPage_SD {
-	private ALandingPage landingPage=new ALandingPage(DriverFactory.getDriver());
-	private BHomePage homePage=new BHomePage(DriverFactory.getDriver());
-	private DLoginPage loginPage=new DLoginPage(DriverFactory.getDriver());
-	private CRegisterPage registerPage=new CRegisterPage(DriverFactory.getDriver());
+public class LoginPageStepDefinitions {
+	private LandingPage landingPage=new LandingPage(DriverFactory.getDriver());
+	private HomePage homePage=new HomePage(DriverFactory.getDriver());
+	private LoginPage loginPage=new LoginPage(DriverFactory.getDriver());
+	private RegisterPage registerPage=new RegisterPage(DriverFactory.getDriver());
 	private WebDriver driver=DriverFactory.getDriver();
 	private ConfigReader config=new ConfigReader();
 	private SoftAssert softAssert=new SoftAssert();
@@ -28,7 +28,7 @@ public class DLoginPage_SD {
 	
 	@Given("User is on Login page")
 	public void user_is_on_login_page() {
-	   homePage=new BHomePage(driver);
+	   homePage=new HomePage(driver);
 	   loginPage=homePage.signin_Btn();
 	   
 	   System.out.println("User should be on login page "+driver.getCurrentUrl());	  

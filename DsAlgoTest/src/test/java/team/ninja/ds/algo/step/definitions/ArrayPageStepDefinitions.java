@@ -16,17 +16,17 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import team.ninja.ds.algo.driver.factory.DriverFactory;
-import team.ninja.ds.algo.page.object.ALandingPage;
-import team.ninja.ds.algo.page.object.BHomePage;
-import team.ninja.ds.algo.page.object.DLoginPage;
-import team.ninja.ds.algo.page.object.FArrayPage;
+import team.ninja.ds.algo.page.object.LandingPage;
+import team.ninja.ds.algo.page.object.HomePage;
+import team.ninja.ds.algo.page.object.LoginPage;
+import team.ninja.ds.algo.page.object.ArrayPage;
 import team.ninja.ds.algo.utilities.ExcelReader;
 
-public class FArrayPage_SD {
-private ALandingPage land=new ALandingPage(DriverFactory.getDriver());
-private BHomePage homepage=new BHomePage (DriverFactory.getDriver());
-private DLoginPage loginpage=new DLoginPage(DriverFactory.getDriver());
-private FArrayPage arrPage=new FArrayPage(DriverFactory.getDriver());
+public class ArrayPageStepDefinitions {
+private LandingPage land=new LandingPage(DriverFactory.getDriver());
+private HomePage homepage=new HomePage (DriverFactory.getDriver());
+private LoginPage loginpage=new LoginPage(DriverFactory.getDriver());
+private ArrayPage arrPage=new ArrayPage(DriverFactory.getDriver());
 private String code;
 private String actualresult;
 private String expectedresult;
@@ -58,7 +58,7 @@ public void the_user_is_in_a_page_having_an_try_editor_with_a_run_button_to_test
 @When("The user enter valid python code in tryEditor from sheet {string} and {int}")
 public void the_user_enter_valid_python_code_in_try_editor_from_sheet_and(String SheetName, Integer rowno) throws InvalidFormatException, IOException, InterruptedException{
 	ExcelReader reader=new ExcelReader();	
-	List<Map<String, String>> rdata = reader.getData("./src/test/resources/Excel_Register/programdata.xlsx",SheetName);
+	List<Map<String, String>> rdata = reader.getData("./src/test/resources/Test_Data/programdata.xlsx",SheetName);
 	code=rdata.get(rowno).get("Pythoncode");
 	expectedresult=rdata.get(rowno).get("Result");
 	 System.out.println("Code:"+code);
@@ -79,7 +79,7 @@ public void the_user_should_be_presented_with_run_result() {
 @When("The user enter python code with invalid syntax in tryEditor from sheet {string} and {int}")
 public void the_user_enter_python_code_with_invalid_syntax_in_try_editor_from_sheet_and(String SheetName, Integer rowno) throws InvalidFormatException, IOException, InterruptedException{
 	 ExcelReader reader=new ExcelReader();
-	 List<Map<String, String>> rdata = reader.getData("./src/test/resources/Excel_Register/programdata.xlsx",SheetName);
+	 List<Map<String, String>> rdata = reader.getData("./src/test/resources/Test_Data/programdata.xlsx",SheetName);
 	 code=rdata.get(rowno).get("Pythoncode");
 	 expectedresult=rdata.get(rowno).get("Result");
 	 arrPage.enter_code(code);   

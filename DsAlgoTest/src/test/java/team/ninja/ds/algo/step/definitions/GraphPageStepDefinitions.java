@@ -1,7 +1,7 @@
 package team.ninja.ds.algo.step.definitions;
 
 import static org.testng.Assert.assertEquals;
-import static team.ninja.ds.algo.constants.DsAlgoConstant.XL_DATA_FILE_PATH;
+import static team.ninja.ds.algo.constants.DsAlgoConstant.XL_QDATA_FILE_PATH;
 import static team.ninja.ds.algo.constants.DsAlgoConstant.graphPracticeQs;
 import static team.ninja.ds.algo.constants.DsAlgoConstant.graphUrl;
 import static team.ninja.ds.algo.utilities.DsAlgoUtil.snooze;
@@ -16,17 +16,17 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import team.ninja.ds.algo.driver.factory.DriverFactory;
-import team.ninja.ds.algo.page.object.BHomePage;
-import team.ninja.ds.algo.page.object.KGraphPage;
+import team.ninja.ds.algo.page.object.HomePage;
+import team.ninja.ds.algo.page.object.GraphPage;
 import team.ninja.ds.algo.utilities.ExcelReader;
 
-public class KGraphPage_SD {
-	 
-	private KGraphPage gPage = new KGraphPage(DriverFactory.getDriver());
-	private BHomePage homePage = new BHomePage(DriverFactory.getDriver());
+public class GraphPageStepDefinitions {
+
+	private GraphPage gPage = new GraphPage(DriverFactory.getDriver());
+	private HomePage homePage = new HomePage(DriverFactory.getDriver());
 	String expectedResult = null;
-	WebDriver driver=DriverFactory.getDriver();
-	
+	WebDriver driver = DriverFactory.getDriver();
+
 	@Given("The user on homepage for graph")
 	public void the_user_on_homepage_for_graph() {
 		homePage.homepage();
@@ -34,8 +34,8 @@ public class KGraphPage_SD {
 
 	@When("The user clicks the graph item from the drop down menu")
 	public void the_user_clicks_the_graph_item_from_the_drop_down_menu() {
-	    gPage.clickOnGraphItem();
-	    gPage.clickOnDropdownGraphlink();
+		gPage.clickOnGraphItem();
+		gPage.clickOnDropdownGraphlink();
 	}
 
 	@Then("The user be directed to Graph Data Structure Page")
@@ -45,7 +45,6 @@ public class KGraphPage_SD {
 		assertEquals(actualURL, graphUrl);
 	}
 
-	
 	@Given("The user is on the Graph page after logged in")
 	public void the_user_is_on_the_graph_page_after_logged_in() {
 		gPage.navigateToGraphPage();
@@ -64,8 +63,6 @@ public class KGraphPage_SD {
 		assertEquals(title, string);
 	}
 
-
-
 	@Given("The user is in a {string} page for graph having an tryEditor with a Run button to test")
 	public void the_user_is_in_a_page_for_graph_having_an_try_editor_with_a_run_button_to_test(String string) {
 		gPage.navigateToGraphPage();
@@ -74,25 +71,25 @@ public class KGraphPage_SD {
 	}
 
 	@When("The user enter valid python code in tryEditor for graph from sheet {string} and {int}")
-	public void the_user_enter_valid_python_code_in_try_editor_for_graph_from_sheet_and(String Sheetname, Integer RowNumber) {
+	public void the_user_enter_valid_python_code_in_try_editor_for_graph_from_sheet_and(String Sheetname,
+			Integer RowNumber) {
 		ExcelReader excel = new ExcelReader();
 		try {
-			
-		List<Map<String, String>> list = excel.getData(XL_DATA_FILE_PATH, Sheetname);
-		Map<String, String> dataMap = list.get(RowNumber);
-		String pythonCode = dataMap.get("pythonCode");
-		expectedResult = dataMap.get("Result");
-		System.out.println("expected = " + expectedResult);
-		gPage.sendPythonCode(pythonCode);
-		}
-		catch (Exception e) {
+
+			List<Map<String, String>> list = excel.getData(XL_QDATA_FILE_PATH, Sheetname);
+			Map<String, String> dataMap = list.get(RowNumber);
+			String pythonCode = dataMap.get("pythonCode");
+			expectedResult = dataMap.get("Result");
+			System.out.println("expected = " + expectedResult);
+			gPage.sendPythonCode(pythonCode);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	@When("The user clicks on run button for graph")
 	public void the_user_clicks_on_run_button_for_graph() {
-	    gPage.clickRunBtn();
+		gPage.clickRunBtn();
 	}
 
 	@Then("The user should be presented with Run result for graph")
@@ -103,9 +100,10 @@ public class KGraphPage_SD {
 	}
 
 	@When("The user enter python code with invalid syntax in tryEditor  for graph from sheet {string} and {int}")
-	public void the_user_enter_python_code_with_invalid_syntax_in_try_editor_for_graph_from_sheet_and(String Sheetname, Integer RowNumber) {
+	public void the_user_enter_python_code_with_invalid_syntax_in_try_editor_for_graph_from_sheet_and(String Sheetname,
+			Integer RowNumber) {
 		ExcelReader excel = new ExcelReader();
-		List<Map<String, String>> list = excel.getData(XL_DATA_FILE_PATH, Sheetname);
+		List<Map<String, String>> list = excel.getData(XL_QDATA_FILE_PATH, Sheetname);
 		Map<String, String> dataMap = list.get(RowNumber);
 		String pythonCode = dataMap.get("pythonCode");
 		expectedResult = dataMap.get("Result");
@@ -123,18 +121,17 @@ public class KGraphPage_SD {
 	@Given("The user is on Editor page and navigates to Graph Representations page")
 	public void the_user_is_on_editor_page_and_navigates_to_graph_representations_page() {
 		gPage.navigateToGraphPage();
-	    gPage.clickOnGraphRepresentationLink();
+		gPage.clickOnGraphRepresentationLink();
 	}
 
 	@When("the user will click on Practice Questions for graph")
 	public void the_user_will_click_on_practice_questions_for_graph() {
-	    gPage.clickOnPracticeQlink();
+		gPage.clickOnPracticeQlink();
 	}
 
 	@Then("The user will be directed to Practice page for graph")
 	public void the_user_will_be_directed_to_practice_page_for_graph() {
 		Assert.assertTrue(driver.getCurrentUrl().contains(graphPracticeQs));
 	}
-
 
 }

@@ -14,20 +14,20 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import team.ninja.ds.algo.driver.factory.DriverFactory;
-import team.ninja.ds.algo.page.object.ALandingPage;
-import team.ninja.ds.algo.page.object.BHomePage;
-import team.ninja.ds.algo.page.object.CRegisterPage;
-import team.ninja.ds.algo.page.object.DLoginPage;
+import team.ninja.ds.algo.page.object.LandingPage;
+import team.ninja.ds.algo.page.object.HomePage;
+import team.ninja.ds.algo.page.object.RegisterPage;
+import team.ninja.ds.algo.page.object.LoginPage;
 import team.ninja.ds.algo.utilities.ConfigReader;
 import team.ninja.ds.algo.utilities.ExcelReader;
 
-public class CRegisterPage_SD {
-	private ALandingPage landingPage=new ALandingPage(DriverFactory.getDriver());
-	private BHomePage homePage;	
-	private CRegisterPage registerPage=new CRegisterPage(DriverFactory.getDriver());
+public class RegisterPageStepDefinitions {
+	private LandingPage landingPage=new LandingPage(DriverFactory.getDriver());
+	private HomePage homePage;	
+	private RegisterPage registerPage=new RegisterPage(DriverFactory.getDriver());
 	private WebDriver driver=DriverFactory.getDriver();
 	private ConfigReader reader=new ConfigReader();
-	private DLoginPage loginPage=new DLoginPage(DriverFactory.getDriver());
+	private LoginPage loginPage=new LoginPage(DriverFactory.getDriver());
 	Properties prop;
 	WebDriverWait wait;
 	String error;
@@ -35,7 +35,7 @@ public class CRegisterPage_SD {
 	@Given("The user opens Register Page")
 	public void the_user_opens_register_page() throws InterruptedException {
 	//	registerPage.getRegisterUrl();
-		homePage=new BHomePage(DriverFactory.getDriver());
+		homePage=new HomePage(DriverFactory.getDriver());
 		registerPage=homePage.register_Btn();
 		System.out.println(driver.getCurrentUrl());
 		
@@ -118,7 +118,7 @@ public class CRegisterPage_SD {
 	@When("user enter the sheetname {string} and row number {int}")
 	public void user_enter_the_sheetname_and_row_number(String string, Integer int1) throws InvalidFormatException, IOException, InterruptedException {
 	    ExcelReader excel=new ExcelReader();
-	    List<Map<String,String>> list=excel.getData("src/test/resources/Excel_Register/register.xlsx", "validcredentials");
+	    List<Map<String,String>> list=excel.getData("src/test/resources/Test_Data/register.xlsx", "validcredentials");
 	    String uname=list.get(int1).get("username");
 	    String pwd=list.get(int1).get("password");
 	    String cpwd=list.get(int1).get("confirmpassword");
