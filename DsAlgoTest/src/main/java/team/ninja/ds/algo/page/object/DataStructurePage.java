@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import team.ninja.ds.algo.utilities.ConfigReader;
 
-public class EDataStructurePage {
+public class DataStructurePage {
 
 	ConfigReader cr = new ConfigReader();
 	String homeurl = cr.homePage();
@@ -27,7 +27,7 @@ public class EDataStructurePage {
 	private WebElement runBtn;
 	private WebDriver driver;
 
-	public EDataStructurePage(WebDriver driver) {
+	public DataStructurePage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
@@ -55,13 +55,13 @@ public class EDataStructurePage {
 	}
 
 	public void clickRunBtn() throws InterruptedException {
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		runBtn.click();
 		driver.navigate().to(homeurl);
 	}
 
 	public void alertRunBtnHandle() throws InterruptedException {
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		runBtn.click();
 		String alerttext = isAlertPresent();
 		System.out.println(alerttext);

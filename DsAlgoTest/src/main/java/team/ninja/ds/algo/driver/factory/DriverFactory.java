@@ -1,6 +1,6 @@
 package team.ninja.ds.algo.driver.factory;
 
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,47 +10,36 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-
 public class DriverFactory {
 	public WebDriver driver;
-	WebDriverWait  explicit_wait_Example;
-	public static ThreadLocal<WebDriver> tlDriver=new ThreadLocal<>();
-	
-	@SuppressWarnings("deprecation")
-	public WebDriver init_driver(String browser,String url)
-	{
+	WebDriverWait explicit_wait_Example;
+	public static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
+
+	public WebDriver init_driver(String browser, String url) {
 		System.out.println("driver : initializing the driver first");
-		
-		if(browser.equals("chrome"))
-		{
+
+		if (browser.equals("chrome")) {
 			WebDriverManager.chromedriver().setup();
-			tlDriver.set(new ChromeDriver());			
-		}
-		else if(browser.equalsIgnoreCase("edge"))
-		{
+			tlDriver.set(new ChromeDriver());
+		} else if (browser.equalsIgnoreCase("edge")) {
 			WebDriverManager.edgedriver().setup();
 			tlDriver.set(new EdgeDriver());
-		}
-		else if(browser.equals("firefox"))
-		{
+		} else if (browser.equals("firefox")) {
 			WebDriverManager.firefoxdriver().setup();
 			tlDriver.set(new FirefoxDriver());
-		}
-		else
-		{
+		} else {
 			System.out.println("Please pass in the browser");
 		}
 
-	getDriver().manage().deleteAllCookies();
-	getDriver().manage().window().maximize();
-	getDriver().get(url);
-	getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);    
-	return getDriver();
+		getDriver().manage().deleteAllCookies();
+		getDriver().manage().window().maximize();
+		getDriver().get(url);
+		getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		return getDriver();
 	}
 
 //this is used to get the driver with thread local
-public static synchronized WebDriver getDriver()
-{
-	return tlDriver.get();
-}
+	public static synchronized WebDriver getDriver() {
+		return tlDriver.get();
+	}
 }

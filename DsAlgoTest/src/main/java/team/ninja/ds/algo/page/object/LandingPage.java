@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import team.ninja.ds.algo.driver.factory.DriverFactory;
 
-public class ALandingPage {
+public class LandingPage {
 private WebDriver driver=DriverFactory.getDriver();
 	
 	
@@ -17,16 +17,16 @@ private WebDriver driver=DriverFactory.getDriver();
 	@FindBy(xpath="//a[text()='NumpyNinja']")
 	WebElement getTitle;
 	
-    public ALandingPage(WebDriver driver)
+    public LandingPage(WebDriver driver)
     {
     	this.driver=driver;
     	PageFactory.initElements(driver, this);
     }
     
-    public BHomePage click_Btn() throws InterruptedException
+    public HomePage click_Btn() throws InterruptedException
     {   Thread.sleep(3000);
     	getStarted_btn.click();
-		return new BHomePage(driver);    	
+		return new HomePage(driver);    	
     }
     
     public String get_Title()

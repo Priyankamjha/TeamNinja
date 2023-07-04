@@ -12,7 +12,7 @@ import team.ninja.ds.algo.utilities.ConfigReader;
 import static team.ninja.ds.algo.constants.DsAlgoConstant.*;
 import static team.ninja.ds.algo.utilities.DsAlgoUtil.snooze;
 
-public class KGraphPage {
+public class GraphPage {
 
 	// private static final String graphUrl = null;
 
@@ -25,7 +25,7 @@ public class KGraphPage {
 
 	@FindBy(xpath = "//div[@class='dropdown-menu']//a")
 	private WebElement dropdown_btn;
-	@FindBy(xpath = "//a[@class='list-group-item'][normalize-space()='Graph']") 
+	@FindBy(xpath = "//a[@class='list-group-item'][normalize-space()='Graph']")
 	private WebElement dropdown_graph_btn;
 	@FindBy(xpath = "(//a[text()='Graph'])[2]")
 	private WebElement graph_link;
@@ -42,7 +42,7 @@ public class KGraphPage {
 	@FindBy(xpath = "//a[@class='list-group-item list-group-item-light text-info']")
 	private WebElement PracticeQuestions;
 
-	public KGraphPage(WebDriver driver) {
+	public GraphPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
@@ -61,7 +61,7 @@ public class KGraphPage {
 		dropdown_graph_btn.click();
 		snooze(1);
 	}
-	
+
 //	public void navigateToGraphLink() {
 //		driver.navigate().to("graph_link");
 //	}
@@ -124,7 +124,7 @@ public class KGraphPage {
 	}
 
 	public String getAlertMessage() {
-		String alertText=null;
+		String alertText = null;
 		try {
 			// Check the presence of alert
 			Alert alert = driver.switchTo().alert();
