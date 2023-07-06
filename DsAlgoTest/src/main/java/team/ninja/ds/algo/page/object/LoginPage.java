@@ -102,4 +102,9 @@ public class LoginPage {
 		error = username.getAttribute("validationMessage");
 		return error;
 	}
+
+	public void goToLoginPage() {
+
+		driver.get("https://dsportalapp.herokuapp.com/login");
+	}
 }

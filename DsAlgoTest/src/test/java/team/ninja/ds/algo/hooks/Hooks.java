@@ -7,6 +7,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterSuite;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -14,7 +15,7 @@ import io.cucumber.java.Scenario;
 import team.ninja.ds.algo.driver.factory.DriverFactory;
 import team.ninja.ds.algo.utilities.ConfigReader;
 import team.ninja.ds.algo.utilities.LoggerLoad;
-
+import static java.util.Objects.isNull;
 public class Hooks {
 	private DriverFactory driverFactory;
 	private WebDriver driver;
@@ -34,12 +35,15 @@ public class Hooks {
 	@Before(order=1)
 	public void launchBrowser()
 	{
-		String browserName=prop.getProperty("browser");
-		String geturl=prop.getProperty("url");
-		LoggerLoad.info("Initializing the DriverFactory class ");
-		driverFactory=new DriverFactory();
-	    LoggerLoad.info(browserName+ " browser is Launching");
-		driver=driverFactory.init_driver(browserName,geturl);	
+	    driver = driverFactory.getDriver();
+	    if(isNull(driver)) {
+			String browserName=prop.getProperty("browser");
+			String geturl=prop.getProperty("url");
+			LoggerLoad.info("Initializing the DriverFactory class ");
+			driverFactory=new DriverFactory();
+		    LoggerLoad.info(browserName+ " browser is Launching");
+			driver=driverFactory.init_driver(browserName,geturl);	
+	    }
 		
 	}
 	
@@ -47,9 +51,15 @@ public class Hooks {
 	public void quitBrowser()
 	{
 		LoggerLoad.info("Closing Browser");
-		driver.quit();
+		//driver.quit();
 	}
-	
+
+	@AfterSuite(alwaysRun = true)// will execute after "1" then order 0
+	public void afterAllTestDone()
+	{
+		LoggerLoad.info("afterAllTestDone");
+	}
+
 	@After(order=1)//for After it will start from 1 and then 0
 	public void tearDown(Scenario scenario)
 	{

@@ -11,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import team.ninja.ds.algo.driver.factory.DriverFactory;
 import team.ninja.ds.algo.utilities.ConfigReader;
 
 public class HomePage {
@@ -18,7 +19,8 @@ public class HomePage {
 	String str2;
 	WebDriverWait wait;
 	String homePageurl = ConfigReader.homePage();
-
+    
+	
 	@FindBy(xpath = "//div[@class='dropdown-menu']//a")
 	private WebElement menu_Options;
 	@FindBy(xpath = "//div[@class='alert alert-primary']")
@@ -111,7 +113,7 @@ public class HomePage {
 		return new LoginPage(driver);
 	}
 
-	public RegisterPage register_Btn() throws InterruptedException {
+	public RegisterPage register_Btn()  {
 		//Thread.sleep(3000);
 		register.click();
 		return new RegisterPage(driver);
@@ -121,18 +123,21 @@ public class HomePage {
 		menudropdown.click();
 	}
 
-	public void getStartBtn_click(String option) throws InterruptedException {
-
-		// new
-		// WebDriverWait(driver,Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(optlst));
-
-		String message = signinalert.getText();
-		if (message.equalsIgnoreCase("You are logged in")) {
-			WebElement optlst = driver.findElement(By.xpath("//h5[text()='" + option + "']/../a"));
-			new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(optlst));
-			optlst.click();
-		}
-
+	public void getStartBtn_click(String option)  {
+		WebElement optlst = driver.findElement(By.xpath("//h5[text()='" + option + "']/../a"));
+		optlst.click();
 	}
+	public boolean isLoginRequired(String option) {
+		WebElement optlst = driver.findElement(By.xpath("//h5[text()='" + option + "']/../a"));
+		optlst.click();
+		String message = signinalert.getText();
+		if(message.equals("You are not logged in")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	
 
 }

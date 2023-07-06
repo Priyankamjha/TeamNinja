@@ -21,11 +21,14 @@ private WebDriver driver=DriverFactory.getDriver();
     {
     	this.driver=driver;
     	PageFactory.initElements(driver, this);
+    	
     }
     
     public HomePage click_Btn() throws InterruptedException
-    {   Thread.sleep(3000);
-    	getStarted_btn.click();
+    {  
+    	//Thread.sleep(3000);
+    	driver.get("https://dsportalapp.herokuapp.com/");
+		getStarted_btn.click();
 		return new HomePage(driver);    	
     }
     
