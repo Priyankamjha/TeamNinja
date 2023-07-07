@@ -27,6 +27,8 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
+        settings-path: ${{ github.workspace }} 
+        
     - name: Install Google Chrome 
 
       run: |
