@@ -29,7 +29,7 @@ private WebDriver driver=DriverFactory.getDriver();
     	//Thread.sleep(3000);
     	driver.get("https://dsportalapp.herokuapp.com/");
 		getStarted_btn.click();
-		return new HomePage(driver);    	
+		return HomePage.getInstance();    	
     }
     
     public String get_Title()

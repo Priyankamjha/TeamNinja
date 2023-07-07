@@ -23,7 +23,7 @@ import team.ninja.ds.algo.utilities.ExcelReader;
 public class GraphPageStepDefinitions {
 
 	private GraphPage gPage = new GraphPage(DriverFactory.getDriver());
-	private HomePage homePage = new HomePage(DriverFactory.getDriver());
+	private HomePage homePage = HomePage.getInstance();
 	String expectedResult = null;
 	WebDriver driver = DriverFactory.getDriver();
 

@@ -21,9 +21,8 @@ import team.ninja.ds.algo.utilities.ConfigReader;
 
 public class HomePageStepDefinitions {
 	private LandingPage landingPage = new LandingPage(DriverFactory.getDriver());
-	private HomePage homePage = new HomePage(DriverFactory.getDriver());
-	private LoginPage loginPage = new LoginPage(DriverFactory.getDriver());
-	private RegisterPage registerPage = new RegisterPage(DriverFactory.getDriver());
+	private HomePage homePage = HomePage.getInstance();
+	private LoginPage loginPage = LoginPage.getInstance();
 	private WebDriver driver = DriverFactory.getDriver();
 	private ConfigReader reader = new ConfigReader();
 	String expected = null;
@@ -54,7 +53,7 @@ public class HomePageStepDefinitions {
 
 	@Given("user is on Home Page")
 	public void user_is_on_home_page() throws InterruptedException {
-		// homePage.homepage();
+		 homePage.homepage();
 		// homePage=landingPage.click_Btn();
 		System.out.println("from homePage :  " + DriverFactory.getDriver().getCurrentUrl());
 	}
@@ -100,7 +99,7 @@ public class HomePageStepDefinitions {
 
 	@When("user clicks on Register button he is directed to register page")
 	public void user_clicks_on_register_link() throws InterruptedException {
-		registerPage = homePage.register_Btn();
+		homePage.register_Btn();
 		actual_PageUrl = driver.getCurrentUrl();
 		expected_PageUrl = "https://dsportalapp.herokuapp.com/register";
 	}
@@ -114,9 +113,12 @@ public class HomePageStepDefinitions {
 
 	@When("The user click any of the Get started link after signin {string} in home page")
 	public void the_user_click_any_of_the_get_started_link_after_signin_in_home_page(String string) {
-		loginPage.goToLoginPage();
-		loginPage.login_entry(reader.getUserName(), reader.getPassword());
-		loginPage.success_login();
+		if(!loginPage.isUserLoggedin()) {
+			loginPage.goToLoginPage();
+			loginPage.loginUser();
+		} else {
+			homePage.homepage();
+		}
 		homePage.getStartBtn_click(string);
 		expected = string;
 
@@ -126,6 +128,9 @@ public class HomePageStepDefinitions {
 	public void the_user_should_able_to_goto_its_respective_page() {
 		String title = DriverFactory.getDriver().getTitle();
 		assertEquals(title, expected);
+		if("Graph".equals(expected)) {
+			loginPage.sign_out();
+		}
 	}
 
 }

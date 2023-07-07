@@ -1,5 +1,7 @@
 package team.ninja.ds.algo.page.object;
 
+import static team.ninja.ds.algo.utilities.DsAlgoUtil.snooze;
+
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
@@ -7,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import team.ninja.ds.algo.driver.factory.DriverFactory;
 import team.ninja.ds.algo.utilities.ConfigReader;
 
 public class DataStructurePage {
@@ -51,7 +54,14 @@ public class DataStructurePage {
 	}
 
 	public void enterCode(String pythonCode) throws InterruptedException {
-		textEditor.sendKeys(pythonCode);
+		System.out.println("Debug URL = "+DriverFactory.getDriver().getCurrentUrl());
+		try {
+			textEditor.sendKeys(pythonCode);
+		}catch(Exception e ){
+			e.printStackTrace();
+			snooze(5);
+			textEditor.sendKeys(pythonCode);
+		}
 	}
 
 	public void clickRunBtn() throws InterruptedException {

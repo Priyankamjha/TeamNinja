@@ -12,31 +12,32 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import team.ninja.ds.algo.driver.factory.DriverFactory;
-import team.ninja.ds.algo.page.object.LandingPage;
-import team.ninja.ds.algo.page.object.HomePage;
-import team.ninja.ds.algo.page.object.RegisterPage;
-import team.ninja.ds.algo.page.object.LoginPage;
 import team.ninja.ds.algo.page.object.DataStructurePage;
-import team.ninja.ds.algo.utilities.ConfigReader;
-
+import team.ninja.ds.algo.page.object.HomePage;
+import team.ninja.ds.algo.page.object.LoginPage;
 public class DataStructurePageStepDefinitions {
 	
 
 	private DataStructurePage dataStructurePage=new  DataStructurePage(DriverFactory.getDriver());
-	private LandingPage landingPage=new LandingPage(DriverFactory.getDriver());
-	private HomePage homePage=new HomePage(DriverFactory.getDriver());
-	private LoginPage loginPage=new LoginPage(DriverFactory.getDriver());
-	private RegisterPage registerPage=new RegisterPage(DriverFactory.getDriver());
+	private HomePage homePage=HomePage.getInstance();
+	private LoginPage loginPage= LoginPage.getInstance();
 	private WebDriver driver=DriverFactory.getDriver();
-	private ConfigReader config=new ConfigReader();
 	private SoftAssert softAssert=new SoftAssert();
 	private static String actualAlertText;
-	
 	
 	
 	@When("user clicks on datastructure getstarted")
 	public void user_clicks_on_datastructure_getstarted() {
 		dataStructurePage.getStarted_DS();
+	 
+	}
+
+	
+	@When("The user is logged in with valid user id and password")
+	public void The_user_is_logged_in_with_valid_user_id_and_password() {
+		if(!loginPage.isUserLoggedin()) {
+			loginPage.loginUser();
+		}
 	 
 	}
 
@@ -67,9 +68,9 @@ public class DataStructurePageStepDefinitions {
 
 	@When("user enter the Python code")
 	public void user_enter_the_python_code(io.cucumber.datatable.DataTable pythonCode) throws InterruptedException {
-
+			
 		List<String> data=pythonCode.asList();
-		 dataStructurePage.enterCode(data.get(0));
+		dataStructurePage.enterCode(data.get(0));
 	}
 
 	@When("user clicks run button and goes to home page")

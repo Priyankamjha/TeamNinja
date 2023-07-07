@@ -5,12 +5,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import team.ninja.ds.algo.context.DsAlgoTestContext;
 import team.ninja.ds.algo.driver.factory.DriverFactory;
+import team.ninja.ds.algo.utilities.ConfigReader;
 
 public class LoginPage {
 	private WebDriver driver = DriverFactory.getDriver();
 	String error;
 	String msg;
+	private static LoginPage loginPage = null;
+	private boolean isUserLoggedin = false;
+	private ConfigReader reader=new ConfigReader();
 
 	@FindBy(xpath = "//input[@id='id_username']")
 	private WebElement username;
@@ -31,9 +36,17 @@ public class LoginPage {
 	@FindBy(xpath = "//div[@class='alert alert-primary']")
 	private WebElement alert;
 
-	public LoginPage(WebDriver driver) {
+	private LoginPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
+	}
+
+	public static LoginPage getInstance() {
+		if(loginPage==null) {
+			loginPage = new LoginPage(DriverFactory.getDriver());
+		} 
+		
+		return loginPage;
 	}
 
 	public String login_click() {
@@ -44,7 +57,17 @@ public class LoginPage {
 		return error;
 
 	}
-
+	public boolean isUserLoggedin() {
+		return isUserLoggedin;
+	}
+	
+	public void loginUser() {
+		loginPage.goToLoginPage();
+		loginPage.login_entry(reader.getUserName(), reader.getPassword());
+		loginPage.success_login();
+		isUserLoggedin = true;
+	}
+	
 	public void login_entry(String uname, String pwd) {
 		username.clear();
 		username.sendKeys(uname);
@@ -61,9 +84,11 @@ public class LoginPage {
 
 	}
 
-	public void sign_out() throws InterruptedException {
-		Thread.sleep(3000);
+	public void sign_out()  {
+		//Thread.sleep(3000);
 		signout.click();
+		isUserLoggedin = false;
+
 	}
 
 	public String success_logout() throws InterruptedException {

@@ -22,7 +22,7 @@ public class QueuePageStepDefinitions {
 
     private static final Logger logger = LogManager.getLogger(QueuePageStepDefinitions.class);
 
-	private HomePage homePage = new HomePage(DriverFactory.getDriver());
+	private HomePage homePage = HomePage.getInstance();
 	private QueuePage qPage = new QueuePage(DriverFactory.getDriver());
 
 	String expectedResult = null;

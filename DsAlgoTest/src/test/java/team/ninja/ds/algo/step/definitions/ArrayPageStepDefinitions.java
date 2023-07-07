@@ -23,9 +23,8 @@ import team.ninja.ds.algo.page.object.ArrayPage;
 import team.ninja.ds.algo.utilities.ExcelReader;
 
 public class ArrayPageStepDefinitions {
-private LandingPage land=new LandingPage(DriverFactory.getDriver());
-private HomePage homepage=new HomePage (DriverFactory.getDriver());
-private LoginPage loginpage=new LoginPage(DriverFactory.getDriver());
+private HomePage homepage=HomePage.getInstance();
+private LoginPage loginpage=LoginPage.getInstance();
 private ArrayPage arrPage=new ArrayPage(DriverFactory.getDriver());
 private String code;
 private String actualresult;
@@ -34,6 +33,7 @@ WebDriver driver=DriverFactory.getDriver();
 
 @Given("The user is on the {string} after logged in")
 public void the_user_is_on_the_after_logged_in(String string) {
+	homepage.homepage();
 	arrPage=homepage.array_getstart();
 }
 
@@ -50,6 +50,7 @@ public void the_user_clicks_button(String option) {
 
 @Given("The user is in a {string} page having an tryEditor with a Run button to test")
 public void the_user_is_in_a_page_having_an_try_editor_with_a_run_button_to_test(String option) {
+	homepage.homepage();
 	arrPage=homepage.array_getstart();
 	arrPage.arrymenu_click(option);
 	arrPage.tryedit_click();
@@ -92,6 +93,7 @@ public void the_user_should_be_presented_with_error_message() {
 
 @Given("The user is on the Arrays in Python after logged in")
 public void the_user_is_on_the_arrays_in_python_after_logged_in() {
+	homepage.homepage();
 	arrPage=homepage.array_getstart();
 	arrPage.arrayinpython_click();
 }
@@ -113,6 +115,7 @@ public void the_user_should_redirect_to_practice_question_page(String string)
 
 @Given("The user is in a {string}  practice page having an tryEditor with a Run button to test")
 public void the_user_is_in_a_practice_page_having_an_try_editor_with_a_run_button_to_test(String option) {
+	homepage.homepage();
 	arrPage=homepage.array_getstart();
 	arrPage.arrayinpython_click();
 	arrPage.practice_click();

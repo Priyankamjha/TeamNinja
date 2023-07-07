@@ -13,16 +13,14 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import team.ninja.ds.algo.driver.factory.DriverFactory;
-import team.ninja.ds.algo.page.object.LandingPage;
 import team.ninja.ds.algo.page.object.HomePage;
 import team.ninja.ds.algo.page.object.LoginPage;
 import team.ninja.ds.algo.page.object.StackPage;
 import team.ninja.ds.algo.utilities.ExcelReader;
 
 public class StackPageStepDefinitions {
-	private LandingPage land = new LandingPage(DriverFactory.getDriver());
-	private HomePage homepage = new HomePage(DriverFactory.getDriver());
-	private LoginPage loginpage = new LoginPage(DriverFactory.getDriver());
+	private HomePage homepage = HomePage.getInstance();
+	private LoginPage loginpage = LoginPage.getInstance();
 	private StackPage stackPage = new StackPage(DriverFactory.getDriver());
 	private String code;
 	private String actualresult;;
@@ -31,6 +29,7 @@ public class StackPageStepDefinitions {
 
 	@Given("The user is on the {string} page after logged in")
 	public void the_user_is_on_the_page_after_logged_in(String string) {
+		homepage.homepage();
 		stackPage = homepage.stack_getstart();
 	}
 
@@ -41,6 +40,7 @@ public class StackPageStepDefinitions {
 
 	@Given("The user is in a {string} stack page having an tryEditor with a Run button to test")
 	public void the_user_is_in_a_page_having_an_try_editor_with_a_run_button_to_test(String option) {
+		homepage.homepage();
 		stackPage = homepage.stack_getstart();
 		stackPage.stackmenu_click(option);
 		stackPage.tryedit_click();

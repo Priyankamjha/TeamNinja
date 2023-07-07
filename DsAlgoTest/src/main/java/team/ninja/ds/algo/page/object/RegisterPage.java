@@ -123,7 +123,7 @@ public class RegisterPage {
 			msg = mismatchError.getText();
 			System.out.println(msg);
 		}
-		return new LoginPage(driver);
+		return LoginPage.getInstance();
 	}
 
 }

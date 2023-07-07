@@ -43,10 +43,19 @@ public class HomePage {
 	private WebElement stackgetstart;
 	@FindBy(xpath = "//h5[text()='Tree']/..//a")
 	private WebElement treegetstart;
+	private static HomePage homePage = null;
 
-	public HomePage(WebDriver driver) {
+	private HomePage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
+	}
+
+	public static HomePage getInstance() {
+		if(homePage==null) {
+			homePage = new HomePage(DriverFactory.getDriver());
+		} 
+		
+		return homePage;
 	}
 
 	public ArrayPage array_getstart() {
@@ -74,10 +83,11 @@ public class HomePage {
 		driver.get(homePageurl);
 	}
 
-	public GLinkedListPage ll_getStart() throws InterruptedException {
+	public LinkedListPage ll_getStart() throws InterruptedException {
+		homepage();
 		//Thread.sleep(3000);
 		get_startBtn.click();
-		return new GLinkedListPage(driver);
+		return new LinkedListPage(driver);
 	}
 
 	public void dropDownList(String string) throws InterruptedException {
@@ -110,7 +120,7 @@ public class HomePage {
 
 	public LoginPage signin_Btn() {
 		signIn.click();
-		return new LoginPage(driver);
+		return LoginPage.getInstance();
 	}
 
 	public RegisterPage register_Btn()  {

@@ -22,9 +22,8 @@ import team.ninja.ds.algo.page.object.TreePage;
 import team.ninja.ds.algo.utilities.ExcelReader;
 
 public class TreePageStepDefinitions {
-	private LandingPage land=new LandingPage(DriverFactory.getDriver());
-	private HomePage homepage=new HomePage (DriverFactory.getDriver());
-	private LoginPage loginpage=new LoginPage(DriverFactory.getDriver());
+	private HomePage homepage=HomePage.getInstance();
+	private LoginPage loginpage=LoginPage.getInstance();
 	private TreePage treePage=new TreePage(DriverFactory.getDriver());
 	private String code;
 	private String actualresult;;
@@ -33,6 +32,7 @@ public class TreePageStepDefinitions {
 	
 	@Given("The user is on the {string} tree page after logged in")
 	public void the_user_is_on_the_page_after_logged_in(String string) {
+		homepage.homepage();
 		treePage=homepage.tree_getstart();
 	}
 	@When("The user clicks {string} button in tree page")
@@ -46,9 +46,10 @@ public class TreePageStepDefinitions {
 	}
 	@Given("The user is in a {string} tree page having an tryEditor with a Run button to test")
 	public void the_user_is_in_a_page_having_an_try_editor_with_a_run_button_to_test(String option) {
-	treePage=homepage.tree_getstart();
-	treePage.treemenu_click(option);
-	treePage.tryedit_click();
+		homepage.homepage();
+		treePage=homepage.tree_getstart();
+		treePage.treemenu_click(option);
+		treePage.tryedit_click();
 	}
 	@When("The user enter valid python code in tree tryEditor from sheet {string} and {int}")
 	public void the_user_enter_valid_python_code_in_stack_try_editor_from_sheet_and(String SheetName, Integer rowno) throws InvalidFormatException, IOException, InterruptedException{

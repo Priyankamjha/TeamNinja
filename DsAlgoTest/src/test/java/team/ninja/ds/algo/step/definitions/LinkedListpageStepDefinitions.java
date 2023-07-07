@@ -11,22 +11,16 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import team.ninja.ds.algo.driver.factory.DriverFactory;
-import team.ninja.ds.algo.page.object.LandingPage;
+import team.ninja.ds.algo.page.object.LinkedListPage;
 import team.ninja.ds.algo.page.object.HomePage;
-import team.ninja.ds.algo.page.object.RegisterPage;
 import team.ninja.ds.algo.page.object.LoginPage;
-import team.ninja.ds.algo.page.object.DataStructurePage;
-import team.ninja.ds.algo.page.object.GLinkedListPage;
 import team.ninja.ds.algo.utilities.ConfigReader;
 import team.ninja.ds.algo.utilities.PageUtils;
 
 public class LinkedListpageStepDefinitions {
-	private DataStructurePage dataStructurePage=new  DataStructurePage(DriverFactory.getDriver());
-	private LandingPage landingPage=new LandingPage(DriverFactory.getDriver());
-	private HomePage homePage=new HomePage(DriverFactory.getDriver());
-	private LoginPage loginPage=new LoginPage(DriverFactory.getDriver());
-	private RegisterPage registerPage=new RegisterPage(DriverFactory.getDriver());
-	private GLinkedListPage linkedListPage=new GLinkedListPage(DriverFactory.getDriver());
+	private HomePage homePage=HomePage.getInstance();
+	private LoginPage loginPage=LoginPage.getInstance();
+	private LinkedListPage linkedListPage=new LinkedListPage(DriverFactory.getDriver());
 	private WebDriver driver=DriverFactory.getDriver();
 	private ConfigReader config=new ConfigReader();
 	private SoftAssert softAssert=new SoftAssert();

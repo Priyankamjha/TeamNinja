@@ -13,7 +13,7 @@ import org.openqa.selenium.support.PageFactory;
 import team.ninja.ds.algo.driver.factory.DriverFactory;
 import team.ninja.ds.algo.utilities.PageUtils;
 
-public class GLinkedListPage {
+public class LinkedListPage {
 
 	private WebDriver driver = DriverFactory.getDriver();
 	private PageUtils pageUtil = new PageUtils();
@@ -46,7 +46,7 @@ public class GLinkedListPage {
 	@FindBy(xpath = "//ul/a[@class='list-group-item']")
 	private List<WebElement> topics;
 
-	public GLinkedListPage(WebDriver driver) {
+	public LinkedListPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
@@ -72,10 +72,10 @@ public class GLinkedListPage {
 			if (str.equalsIgnoreCase(options)) {
 				topicselt.click();
 				try_Btn.click();
-				Thread.sleep(3000);
+				//Thread.sleep(3000);
 				tryEditor.sendKeys(pCode);
 				runBtn.click();
-				Thread.sleep(3000);
+				//Thread.sleep(3000);
 				result = output.getText();
 				System.out.println("outprut result is" + result);
 				driver.navigate().back();
@@ -98,10 +98,10 @@ public class GLinkedListPage {
 				pageUtil.scrolldown(driver, topicselt);
 				topicselt.click();
 				try_Btn.click();
-				Thread.sleep(3000);
+				//Thread.sleep(3000);
 				tryEditor.sendKeys(pCode);
 				runBtn.click();
-				Thread.sleep(3000);
+				//Thread.sleep(3000);
 				alert = isAlertPresent();
 				break;
 			}

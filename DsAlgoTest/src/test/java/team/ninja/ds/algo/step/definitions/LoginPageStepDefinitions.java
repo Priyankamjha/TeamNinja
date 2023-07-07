@@ -15,8 +15,8 @@ import team.ninja.ds.algo.utilities.ConfigReader;
 
 public class LoginPageStepDefinitions {
 	private LandingPage landingPage=new LandingPage(DriverFactory.getDriver());
-	private HomePage homePage=new HomePage(DriverFactory.getDriver());
-	private LoginPage loginPage=new LoginPage(DriverFactory.getDriver());
+	private HomePage homePage=HomePage.getInstance();
+	private LoginPage loginPage=LoginPage.getInstance();
 	private RegisterPage registerPage=new RegisterPage(DriverFactory.getDriver());
 	private WebDriver driver=DriverFactory.getDriver();
 	private ConfigReader config=new ConfigReader();
@@ -28,7 +28,6 @@ public class LoginPageStepDefinitions {
 	
 	@Given("User is on Login page")
 	public void user_is_on_login_page() {
-	   homePage=new HomePage(driver);
 	   loginPage=homePage.signin_Btn();
 	   
 	   System.out.println("User should be on login page "+driver.getCurrentUrl());	  
@@ -88,14 +87,13 @@ public class LoginPageStepDefinitions {
 	
 	@When("User clicks on signout")
 	public void user_clicks_on_signout() throws InterruptedException {
-		loginPage=homePage.signin_Btn();
-		//System.out.println(driver.getCurrentUrl());
-		String uname=config.getUserName();
-		String pwd=config.getPassword();
-		//System.out.println(uname +pwd);
-		 loginPage.valid_login(uname, pwd);
-		 result=loginPage.success_login();
-		// System.out.println(result);
+		/*
+		 * loginPage=homePage.signin_Btn();
+		 * //System.out.println(driver.getCurrentUrl()); String
+		 * uname=config.getUserName(); String pwd=config.getPassword();
+		 * //System.out.println(uname +pwd); loginPage.valid_login(uname, pwd);
+		 * result=loginPage.success_login();
+		 */		// System.out.println(result);
 		  msg=loginPage.success_logout();
 		  
 	}

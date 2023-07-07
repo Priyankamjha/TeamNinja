@@ -22,12 +22,11 @@ import team.ninja.ds.algo.utilities.ConfigReader;
 import team.ninja.ds.algo.utilities.ExcelReader;
 
 public class RegisterPageStepDefinitions {
-	private LandingPage landingPage=new LandingPage(DriverFactory.getDriver());
-	private HomePage homePage;	
+	private HomePage homePage = HomePage.getInstance();	
 	private RegisterPage registerPage=new RegisterPage(DriverFactory.getDriver());
 	private WebDriver driver=DriverFactory.getDriver();
 	private ConfigReader reader=new ConfigReader();
-	private LoginPage loginPage=new LoginPage(DriverFactory.getDriver());
+	private LoginPage loginPage=LoginPage.getInstance();
 	Properties prop;
 	WebDriverWait wait;
 	String error;
@@ -35,7 +34,6 @@ public class RegisterPageStepDefinitions {
 	@Given("The user opens Register Page")
 	public void the_user_opens_register_page() throws InterruptedException {
 	//	registerPage.getRegisterUrl();
-		homePage=new HomePage(DriverFactory.getDriver());
 		registerPage=homePage.register_Btn();
 		System.out.println(driver.getCurrentUrl());
 		
@@ -128,9 +126,9 @@ public class RegisterPageStepDefinitions {
 
 	@Then("User verifies for the successful registration message")
 	public void user_verifies_for_the_mismatch_error_message() {
-		
 	  Assert.assertEquals(driver.getCurrentUrl(),"https://dsportalapp.herokuapp.com/home");
 	  Assert.assertEquals(driver.getTitle(), "NumpyNinja");
+	  loginPage.sign_out();
 	}
 	
 	

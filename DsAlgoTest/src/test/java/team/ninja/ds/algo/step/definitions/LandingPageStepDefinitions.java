@@ -15,7 +15,7 @@ import team.ninja.ds.algo.page.object.HomePage;
 public class LandingPageStepDefinitions {
 
 	private LandingPage landingPage = new LandingPage(DriverFactory.getDriver());
-	private HomePage homePage = new HomePage(DriverFactory.getDriver());
+	private HomePage homePage = HomePage.getInstance();
 	private static String expected, actual;
 	private WebDriver driver = DriverFactory.getDriver();
 	public SoftAssert softAssert = new SoftAssert();
