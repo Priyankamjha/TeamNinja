@@ -115,7 +115,7 @@ public class RegisterPageStepDefinitions {
 	
 	@When("user enter the sheetname {string} and row number {int}")
 	public void user_enter_the_sheetname_and_row_number(String string, Integer int1) throws InvalidFormatException, IOException, InterruptedException {
-	    ExcelReader excel=new ExcelReader();
+	    ExcelReader excel=ExcelReader.getInstance();
 	    List<Map<String,String>> list=excel.getData("src/test/resources/Test_Data/register.xlsx", "validcredentials");
 	    String uname=list.get(int1).get("username");
 	    String pwd=list.get(int1).get("password");

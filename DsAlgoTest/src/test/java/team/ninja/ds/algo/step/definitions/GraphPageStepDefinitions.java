@@ -73,7 +73,7 @@ public class GraphPageStepDefinitions {
 	@When("The user enter valid python code in tryEditor for graph from sheet {string} and {int}")
 	public void the_user_enter_valid_python_code_in_try_editor_for_graph_from_sheet_and(String Sheetname,
 			Integer RowNumber) {
-		ExcelReader excel = new ExcelReader();
+		ExcelReader excel = ExcelReader.getInstance();
 		try {
 
 			List<Map<String, String>> list = excel.getData(XL_QDATA_FILE_PATH, Sheetname);
@@ -102,7 +102,7 @@ public class GraphPageStepDefinitions {
 	@When("The user enter python code with invalid syntax in tryEditor  for graph from sheet {string} and {int}")
 	public void the_user_enter_python_code_with_invalid_syntax_in_try_editor_for_graph_from_sheet_and(String Sheetname,
 			Integer RowNumber) {
-		ExcelReader excel = new ExcelReader();
+		ExcelReader excel = ExcelReader.getInstance();
 		List<Map<String, String>> list = excel.getData(XL_QDATA_FILE_PATH, Sheetname);
 		Map<String, String> dataMap = list.get(RowNumber);
 		String pythonCode = dataMap.get("pythonCode");

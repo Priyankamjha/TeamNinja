@@ -15,7 +15,7 @@ public class DriverFactory {
 	WebDriverWait explicit_wait_Example;
 	public static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
 
-	public WebDriver init_driver(String browser, String url) {
+	public static WebDriver init_driver(String browser, String url) {
 		System.out.println("driver : initializing the driver first");
 
 		if (browser.equals("chrome")) {

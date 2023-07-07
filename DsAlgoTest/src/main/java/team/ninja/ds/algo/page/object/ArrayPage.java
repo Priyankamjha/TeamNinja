@@ -43,6 +43,8 @@ public class ArrayPage {
 	@FindBys(value = { @FindBy(how = How.XPATH, using = "//div[@class='list-group']/a") })
 	private List<WebElement> practicemenu;
 	private PageUtils pageutil = new PageUtils();
+	@FindBy(xpath = "//form/div/div/div/textarea")
+	private WebElement editorInput;
 
 	public void arrayinpython_click() {
 		pageutil.scrolldown(driver);
@@ -69,9 +71,14 @@ public class ArrayPage {
 		practicequestionlink.click();
 	}
 
-	public void enter_code(String code) {
-		WebElement e = driver.switchTo().activeElement();
-		pageutil.entercode(driver, e, code);
+	public void enter_code(String code, String type) {
+		System.out.println("Array Code = "+ code);
+		if(type.equals("practicequestion")) {
+			WebElement e = driver.switchTo().activeElement();
+			pageutil.entercode(driver, e, code);
+		} else {
+			editorInput.sendKeys(code);
+		}
 	}
 
 	public void click_run() {

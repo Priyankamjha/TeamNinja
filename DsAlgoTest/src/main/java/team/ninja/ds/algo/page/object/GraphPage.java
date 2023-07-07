@@ -57,9 +57,7 @@ public class GraphPage {
 	public void clickOnGraphItem() {
 		snooze(1);
 		menudropdown.click();
-		snooze(1);
 		dropdown_graph_btn.click();
-		snooze(1);
 	}
 
 //	public void navigateToGraphLink() {

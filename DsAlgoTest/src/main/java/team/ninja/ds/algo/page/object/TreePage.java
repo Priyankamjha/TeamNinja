@@ -36,6 +36,8 @@ public class TreePage {
 	private List<WebElement> treemenu;
 	@FindBys(value = { @FindBy(how = How.XPATH, using = "//div[@class='list-group']/a") })
 	private List<WebElement> practicemenu;
+	@FindBy(xpath = "//form/div/div/div/textarea")
+	private WebElement editorInput;
 	private PageUtils pageutil = new PageUtils();
 
 	public void typeoftree_click() {
@@ -64,8 +66,9 @@ public class TreePage {
 	}
 
 	public void enter_code(String code) {
-		WebElement e = driver.switchTo().activeElement();
-		pageutil.entercode(driver, e, code);
+		editorInput.sendKeys(code);
+//		WebElement e = driver.switchTo().activeElement();
+//		pageutil.entercode(driver, e, code);
 	}
 
 	public void click_run() {

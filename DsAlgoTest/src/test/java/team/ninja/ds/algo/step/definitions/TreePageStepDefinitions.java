@@ -53,7 +53,7 @@ public class TreePageStepDefinitions {
 	}
 	@When("The user enter valid python code in tree tryEditor from sheet {string} and {int}")
 	public void the_user_enter_valid_python_code_in_stack_try_editor_from_sheet_and(String SheetName, Integer rowno) throws InvalidFormatException, IOException, InterruptedException{
-		ExcelReader reader=new ExcelReader();	
+		ExcelReader reader=ExcelReader.getInstance();	
 		List<Map<String, String>> rdata = reader.getData("src/test/resources/Test_Data/programdata.xlsx",SheetName);
 		code=rdata.get(rowno).get("Pythoncode");
 		expectedresult=rdata.get(rowno).get("Result");
@@ -71,7 +71,7 @@ public class TreePageStepDefinitions {
 	}
 	@When("The user enter python code with invalid syntax in tree tryEditor from sheet {string} and {int}")
 	public void the_user_enter_python_code_with_invalid_syntax_in_try_editor_from_sheet_and(String SheetName, Integer rowno) throws InvalidFormatException, IOException, InterruptedException{
-		 ExcelReader reader=new ExcelReader();
+		 ExcelReader reader=ExcelReader.getInstance();
 		 List<Map<String, String>> rdata = reader.getData("src/test/resources/Test_Data/programdata.xlsx",SheetName);
 		 code=rdata.get(rowno).get("Pythoncode");
 		 expectedresult=rdata.get(rowno).get("Result");
@@ -84,7 +84,8 @@ public void the_user_should_be_presented_with_error_message() {
 		Assert.assertEquals(actualresult, expectedresult);
 }
 @Given("The user is on the type of tree after logged in")
-public void the_user_is_on_the_arrays_in_python_after_logged_in() {
+public void The_user_is_on_the_type_of_tree_after_logged_in() {
+	homepage.homepage();
 	treePage=homepage.tree_getstart();
 	treePage.typeoftree_click();
 }  

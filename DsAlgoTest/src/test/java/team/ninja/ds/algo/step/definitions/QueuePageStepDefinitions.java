@@ -72,7 +72,7 @@ public class QueuePageStepDefinitions {
 	
 	@When("The user enter valid python code in tryEditor for queue from sheet {string} and {int}")
 	public void the_user_enter_valid_python_code_in_try_editor_for_queue_from_sheet_and(String sheetName, Integer rowNumber) {
-		ExcelReader excel = new ExcelReader();
+		ExcelReader excel = ExcelReader.getInstance();
 		List<Map<String, String>> list = excel.getData(XL_QDATA_FILE_PATH, sheetName);
 		Map<String, String> dataMap = list.get(rowNumber);
 		String pythonCode = dataMap.get("pythonCode");
@@ -96,7 +96,7 @@ public class QueuePageStepDefinitions {
 
 	@When("The user enter python code with invalid syntax in tryEditor  for queue from sheet {string} and {int}")
 	public void the_user_enter_python_code_with_invalid_syntax_in_try_editor_for_queue_from_sheet_and(String sheetName, Integer rowNumber) {
-		ExcelReader excel = new ExcelReader();
+		ExcelReader excel = ExcelReader.getInstance();
 		List<Map<String, String>> list = excel.getData(XL_QDATA_FILE_PATH, sheetName);
 		Map<String, String> dataMap = list.get(rowNumber);
 		String pythonCode = dataMap.get("pythonCode");

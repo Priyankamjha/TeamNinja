@@ -2,6 +2,9 @@ package team.ninja.ds.algo.utilities;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,17 +16,60 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.ss.util.NumberToTextConverter;
+
+import team.ninja.ds.algo.driver.factory.DriverFactory;
+import team.ninja.ds.algo.page.object.LoginPage;
 public class ExcelReader {
-	public List<Map<String, String>> getData(String excelFilePath, String sheetName){
-		Sheet sheet = getSheetByName(excelFilePath, sheetName);
-		return readSheet(sheet);
+	
+	Map<String, List<Map<String, String>>> allTestData = new HashMap();
+	private static ExcelReader excelReader = null;
+
+	private ExcelReader() {
+		loadAllTestData();
+	}
+	
+	public static ExcelReader getInstance() {
+		if(excelReader==null) {
+			excelReader = new ExcelReader();
+		} 
+		return excelReader;
+	}
+
+	private void loadAllTestData() {
+		String fileNames [] = new String [] {"Linked_listCode.xlsx", "programdata.xlsx","QueueTestData.xlsx","register.xlsx" };
+		Map<String, List<String>> sheetNames = new HashMap<String, List<String>>();
+		sheetNames.put("Linked_listCode.xlsx", Arrays.asList("LLCLinkedList"));
+		sheetNames.put("programdata.xlsx", Arrays.asList("array", "practicequestion", "basicoperation", "application", "list"));
+		sheetNames.put("QueueTestData.xlsx", Arrays.asList("ValidPythonCode", "InvalidPythonCode"));
+		sheetNames.put("register.xlsx", Arrays.asList("validcredentials"));
+		
+		String dataDir = "src/test/resources/Test_Data/";
+		for(String fileName: fileNames) {
+			Iterator<String> iterator = sheetNames.get(fileName).iterator();
+			while(iterator.hasNext()) {
+				String sheet = iterator.next();
+				List<Map<String, String>> data = getData(dataDir+fileName, sheet);
+				allTestData.put(dataDir+fileName+sheet, data);
+
+			}
+		}
+		
+	}
+	public  List<Map<String, String>> getData(String excelFilePath, String sheetName){
+		List<Map<String, String>> data = allTestData.get(excelFilePath+sheetName);
+		if(data != null) {
+			return data;
+		} else {
+			Sheet sheet = getSheetByName(excelFilePath, sheetName);
+			return readSheet(sheet);
+		}
 	}
 	public List<Map<String, String>> getData(String excelFilePath, int sheetNumber)
 			throws InvalidFormatException, IOException {
 		Sheet sheet = getSheetByIndex(excelFilePath, sheetNumber);
 		return readSheet(sheet);
 	}
-	private Sheet getSheetByName(String excelFilePath, String sheetName)  {
+	private  Sheet getSheetByName(String excelFilePath, String sheetName)  {
 		Sheet sheet = getWorkBook(excelFilePath).getSheet(sheetName);
 		return sheet;
 	}
@@ -35,6 +81,7 @@ public class ExcelReader {
 		Workbook workbook = null;
 		try {
 			workbook = WorkbookFactory.create(new File(excelFilePath));
+			
 		} catch(Exception e) {
 			throw new RuntimeException(e);
 		}

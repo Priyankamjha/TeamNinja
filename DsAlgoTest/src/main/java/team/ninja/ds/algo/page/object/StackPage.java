@@ -61,7 +61,8 @@ public class StackPage {
 
 	public void enter_code(String code) {
 		// WebElement e=driver.switchTo().activeElement();
-		pageutil.entercode(driver, editorInput, code);
+		editorInput.sendKeys(code);
+		//pageutil.entercode(driver, editorInput, code);
 	}
 
 	public void click_run() {

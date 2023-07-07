@@ -58,12 +58,12 @@ public void the_user_is_in_a_page_having_an_try_editor_with_a_run_button_to_test
 
 @When("The user enter valid python code in tryEditor from sheet {string} and {int}")
 public void the_user_enter_valid_python_code_in_try_editor_from_sheet_and(String SheetName, Integer rowno) throws InvalidFormatException, IOException, InterruptedException{
-	ExcelReader reader=new ExcelReader();	
-	List<Map<String, String>> rdata = reader.getData("./src/test/resources/Test_Data/programdata.xlsx",SheetName);
+	ExcelReader reader=ExcelReader.getInstance();	
+	List<Map<String, String>> rdata = reader.getData("src/test/resources/Test_Data/programdata.xlsx",SheetName);
 	code=rdata.get(rowno).get("Pythoncode");
 	expectedresult=rdata.get(rowno).get("Result");
 	 System.out.println("Code:"+code);
-	arrPage.enter_code(code);
+	arrPage.enter_code(code, SheetName);
 }
 
 @And("The user clicks on run button")
@@ -79,11 +79,11 @@ public void the_user_should_be_presented_with_run_result() {
 
 @When("The user enter python code with invalid syntax in tryEditor from sheet {string} and {int}")
 public void the_user_enter_python_code_with_invalid_syntax_in_try_editor_from_sheet_and(String SheetName, Integer rowno) throws InvalidFormatException, IOException, InterruptedException{
-	 ExcelReader reader=new ExcelReader();
-	 List<Map<String, String>> rdata = reader.getData("./src/test/resources/Test_Data/programdata.xlsx",SheetName);
+	 ExcelReader reader=ExcelReader.getInstance();
+	 List<Map<String, String>> rdata = reader.getData("src/test/resources/Test_Data/programdata.xlsx",SheetName);
 	 code=rdata.get(rowno).get("Pythoncode");
 	 expectedresult=rdata.get(rowno).get("Result");
-	 arrPage.enter_code(code);   
+	 arrPage.enter_code(code, SheetName);   
 }
 @Then("The user should be presented with error message")
 public void the_user_should_be_presented_with_error_message() {

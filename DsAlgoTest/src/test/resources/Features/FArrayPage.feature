@@ -2,11 +2,11 @@
 Feature: Test Array page
 
   Background: The user is logged in to DS Algo portal
-   	When The user is logged in with valid user id and password
+  	Given The user is logged in with valid user id and password
     #Given The user opens DS Algo portal link
     #When The user clicks the Get Started button
     #And User is on Login page
-    #When User enters valid username "Team" and password "Ninjas123"
+    #When User enters valid username "sdet" and password "sdet1234"
     #And User clicks on login button
 
   Scenario Outline: The user is able to navigate to all options in array page
