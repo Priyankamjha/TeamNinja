@@ -27,15 +27,7 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-        settings-path: ${{ github.workspace }} 
-        
-    - name: Install Google Chrome 
-
-      run: |
-
-              chmod +x ./scripts/InstallChrome.sh
-
-                          ./scripts/InstallChrome.sh 
+        settings-path: ${{ github.workspace }}         
     - name: Build with Maven
       run: mvn -B test --file DsAlgoTest/pom.xml
 
