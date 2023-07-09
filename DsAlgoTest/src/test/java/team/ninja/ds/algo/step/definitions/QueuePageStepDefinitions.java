@@ -126,7 +126,8 @@ public class QueuePageStepDefinitions {
 
 	@Then("The user is directed to Practice page")
 	public void the_user_is_directed_to_practice_page() {
-		qPage.navigateToPracticeQuestionsLink();
+		assertEquals("1", "2");
+		//qPage.navigateToPracticeQuestionsLink();
 	}
 
 }
