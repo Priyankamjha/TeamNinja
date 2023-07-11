@@ -16,7 +16,7 @@ import io.cucumber.java.BeforeAll;
 import io.cucumber.java.Scenario;
 import team.ninja.ds.algo.driver.manager.DriverManager;
 import team.ninja.ds.algo.utilities.ConfigReader;
-import team.ninja.ds.algo.utilities.LoggerLoad;
+import team.ninja.ds.algo.utilities.DsAlgoTestLogger;
 import static java.util.Objects.isNull;
 public class DsAlgoTestHooks {
 	private static DriverManager driverFactory;
@@ -30,15 +30,15 @@ public class DsAlgoTestHooks {
 	public static void beforeAll() throws IOException
 	{   
 
-		LoggerLoad.info("Loading Config Properties ");
+		DsAlgoTestLogger.info("Loading Config Properties ");
 	    driver = DriverManager.getDriver();
 	    if(isNull(driver)) {
 			configReader =new ConfigReader();
 			prop=configReader.init_prop();		
 			String browserName=prop.getProperty("browser");
 			String geturl=prop.getProperty("url");
-			LoggerLoad.info("Initializing the DriverFactory class ");
-		    LoggerLoad.info(browserName+ " browser is Launching");
+			DsAlgoTestLogger.info("Initializing the DriverFactory class ");
+		    DsAlgoTestLogger.info(browserName+ " browser is Launching");
 			driver=DriverManager.init_driver(browserName,geturl);	
 	    }
 	}
@@ -47,7 +47,7 @@ public class DsAlgoTestHooks {
 	@AfterAll(order=0)// will execute after "1" then order 0
 	public static void afterAll()
 	{
-		LoggerLoad.info("Closing Browser");
+		DsAlgoTestLogger.info("Closing Browser");
 		driver.quit();
 	}
 
@@ -57,7 +57,7 @@ public class DsAlgoTestHooks {
 	{
 		if(scenario.isFailed())//take ScreenShot;
 		{	
-			LoggerLoad.error("Steps Failed , Taking Screenshot");
+			DsAlgoTestLogger.error("Steps Failed , Taking Screenshot");
 			String screenShotName=scenario.getName().replaceAll("", "_");
 			byte[] sourcePath=((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
 			scenario.attach(sourcePath,"image/png", screenShotName);

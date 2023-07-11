@@ -2,7 +2,7 @@ package team.ninja.ds.algo.constants;
 
 public class DsAlgoConstant {
 
-	public static final String CONFIG_FILE_PATH="src/main/resources/dsAlgo_Config/Config.properties";
+	public static final String CONFIG_FILE_PATH="src/test/resources/test-config/Config.properties";
 	public static final String XL_QDATA_FILE_PATH="src/test/resources/Test_Data/QueueTestData.xlsx";
 	
 	public static final String homePageUrl ="https://dsportalapp.herokuapp.com/home";//added to test

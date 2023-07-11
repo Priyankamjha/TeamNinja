@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import team.ninja.ds.algo.driver.manager.DriverManager;
 import team.ninja.ds.algo.utilities.ConfigReader;
+import team.ninja.ds.algo.utilities.DsAlgoTestLogger;
 
 public class RegisterPage {
 	private WebDriver driver = DriverManager.getDriver();
@@ -67,7 +68,7 @@ public class RegisterPage {
 	}
 
 	public String printerror() {
-		System.out.println("Error Message #:" + error);
+		DsAlgoTestLogger.info("Error Message #:" + error);
 		return error;
 	}
 

@@ -1,7 +1,7 @@
 package team.ninja.ds.algo.utilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-public class LoggerLoad {
+public class DsAlgoTestLogger {
 
 	private static final Logger logger = LogManager.getLogger();
 	public static void info(String message) {
