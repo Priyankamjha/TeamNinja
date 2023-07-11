@@ -5,11 +5,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import team.ninja.ds.algo.driver.factory.DriverFactory;
+import team.ninja.ds.algo.driver.manager.DriverManager;
 import team.ninja.ds.algo.utilities.ConfigReader;
 
 public class LoginPage {
-	private WebDriver driver = DriverFactory.getDriver();
+	private WebDriver driver = DriverManager.getDriver();
 	String error;
 	String msg;
 	private static LoginPage loginPage = null;
@@ -42,7 +42,7 @@ public class LoginPage {
 
 	public static LoginPage getInstance() {
 		if(loginPage==null) {
-			loginPage = new LoginPage(DriverFactory.getDriver());
+			loginPage = new LoginPage(DriverManager.getDriver());
 		} 
 		
 		return loginPage;

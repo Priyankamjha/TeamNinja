@@ -5,6 +5,7 @@ public class DsAlgoConstant {
 	public static final String CONFIG_FILE_PATH="src/main/resources/dsAlgo_Config/Config.properties";
 	public static final String XL_QDATA_FILE_PATH="src/test/resources/Test_Data/QueueTestData.xlsx";
 	
+	public static final String homePageUrl ="https://dsportalapp.herokuapp.com/home";//added to test
 	public static final String queueUrl = "https://dsportalapp.herokuapp.com/queue/";
 	public static final String impOfQPython = "https://dsportalapp.herokuapp.com/queue/implementation-lists/";
 	public static final String impColDeq = "https://dsportalapp.herokuapp.com/queue/implementation-collections/";

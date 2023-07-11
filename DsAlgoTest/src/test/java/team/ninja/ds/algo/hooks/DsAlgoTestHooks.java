@@ -14,12 +14,12 @@ import io.cucumber.java.AfterAll;
 import io.cucumber.java.Before;
 import io.cucumber.java.BeforeAll;
 import io.cucumber.java.Scenario;
-import team.ninja.ds.algo.driver.factory.DriverFactory;
+import team.ninja.ds.algo.driver.manager.DriverManager;
 import team.ninja.ds.algo.utilities.ConfigReader;
 import team.ninja.ds.algo.utilities.LoggerLoad;
 import static java.util.Objects.isNull;
-public class Hooks {
-	private static DriverFactory driverFactory;
+public class DsAlgoTestHooks {
+	private static DriverManager driverFactory;
 	private static WebDriver driver;
 	private static ConfigReader configReader;
 	static Properties prop;
@@ -29,19 +29,21 @@ public class Hooks {
 	@BeforeAll(order=0)//will execute 0 and then 1
 	public static void beforeAll() throws IOException
 	{   
+
 		LoggerLoad.info("Loading Config Properties ");
-		configReader =new ConfigReader();
-		prop=configReader.init_prop();		
-	    driver = DriverFactory.getDriver();
+	    driver = DriverManager.getDriver();
 	    if(isNull(driver)) {
+			configReader =new ConfigReader();
+			prop=configReader.init_prop();		
 			String browserName=prop.getProperty("browser");
 			String geturl=prop.getProperty("url");
 			LoggerLoad.info("Initializing the DriverFactory class ");
 		    LoggerLoad.info(browserName+ " browser is Launching");
-			driver=DriverFactory.init_driver(browserName,geturl);	
+			driver=DriverManager.init_driver(browserName,geturl);	
 	    }
 	}
 	
+
 	@AfterAll(order=0)// will execute after "1" then order 0
 	public static void afterAll()
 	{

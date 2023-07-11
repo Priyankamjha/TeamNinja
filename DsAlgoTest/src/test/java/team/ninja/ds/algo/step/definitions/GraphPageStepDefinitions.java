@@ -15,17 +15,17 @@ import org.testng.Assert;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import team.ninja.ds.algo.driver.factory.DriverFactory;
 import team.ninja.ds.algo.page.object.HomePage;
+import team.ninja.ds.algo.driver.manager.DriverManager;
 import team.ninja.ds.algo.page.object.GraphPage;
 import team.ninja.ds.algo.utilities.ExcelReader;
 
 public class GraphPageStepDefinitions {
 
-	private GraphPage gPage = new GraphPage(DriverFactory.getDriver());
+	private GraphPage gPage = new GraphPage(DriverManager.getDriver());
 	private HomePage homePage = HomePage.getInstance();
 	String expectedResult = null;
-	WebDriver driver = DriverFactory.getDriver();
+	WebDriver driver = DriverManager.getDriver();
 
 	@Given("The user on homepage for graph")
 	public void the_user_on_homepage_for_graph() {
@@ -40,7 +40,7 @@ public class GraphPageStepDefinitions {
 
 	@Then("The user be directed to Graph Data Structure Page")
 	public void the_user_be_directed_to_graph_data_structure_page() {
-		String actualURL = DriverFactory.getDriver().getCurrentUrl();
+		String actualURL = DriverManager.getDriver().getCurrentUrl();
 		System.out.println("actualURL  = " + actualURL);
 		assertEquals(actualURL, graphUrl);
 	}
@@ -57,7 +57,7 @@ public class GraphPageStepDefinitions {
 
 	@Then("User directed to {string} page for graph")
 	public void user_directed_to_page_for_graph(String string) {
-		String title = DriverFactory.getDriver().getTitle();
+		String title = DriverManager.getDriver().getTitle();
 		System.out.println("Title = " + title);
 		snooze(2);
 		assertEquals(title, string);
@@ -114,7 +114,7 @@ public class GraphPageStepDefinitions {
 	public void the_user_should_be_presented_with_error_message_for_graph() {
 		String errorMessage = gPage.getAlertMessage();
 		System.out.println("errorMessage = " + errorMessage);
-		System.out.println("driver.getTitle() = " + DriverFactory.getDriver().getTitle());
+		System.out.println("driver.getTitle() = " + DriverManager.getDriver().getTitle());
 		assertEquals(errorMessage, expectedResult);
 	}
 

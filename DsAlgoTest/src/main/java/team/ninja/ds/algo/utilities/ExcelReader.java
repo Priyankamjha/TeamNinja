@@ -17,7 +17,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.ss.util.NumberToTextConverter;
 
-import team.ninja.ds.algo.driver.factory.DriverFactory;
+import team.ninja.ds.algo.driver.manager.DriverManager;
 import team.ninja.ds.algo.page.object.LoginPage;
 public class ExcelReader {
 	

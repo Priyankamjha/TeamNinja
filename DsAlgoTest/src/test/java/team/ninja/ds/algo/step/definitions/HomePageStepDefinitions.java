@@ -12,18 +12,18 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import team.ninja.ds.algo.driver.factory.DriverFactory;
 import team.ninja.ds.algo.page.object.LandingPage;
+import team.ninja.ds.algo.driver.manager.DriverManager;
 import team.ninja.ds.algo.page.object.HomePage;
 import team.ninja.ds.algo.page.object.RegisterPage;
 import team.ninja.ds.algo.page.object.LoginPage;
 import team.ninja.ds.algo.utilities.ConfigReader;
 
 public class HomePageStepDefinitions {
-	private LandingPage landingPage = new LandingPage(DriverFactory.getDriver());
+	private LandingPage landingPage = new LandingPage(DriverManager.getDriver());
 	private HomePage homePage = HomePage.getInstance();
 	private LoginPage loginPage = LoginPage.getInstance();
-	private WebDriver driver = DriverFactory.getDriver();
+	private WebDriver driver = DriverManager.getDriver();
 	private ConfigReader reader = new ConfigReader();
 	String expected = null;
 	Properties prop;
@@ -32,14 +32,14 @@ public class HomePageStepDefinitions {
 
 	@Given("user opens the dsalgo portal link") // Assertion to check whether the page landed on the landing page
 	public void user_opens_the_dsalgo_portal_link() {
-		String landingPage = DriverFactory.getDriver().getCurrentUrl();
+		String landingPage = DriverManager.getDriver().getCurrentUrl();
 		String expectedLandingPage = "https://dsportalapp.herokuapp.com/";
 		assertEquals(landingPage, expectedLandingPage);
 	}
 
 	@When("user clicks on {string} button") // Clicks the get Started button
 	public void user_clicks_on_button(String getStarted) throws InterruptedException {
-		landingPage = new LandingPage(DriverFactory.getDriver());
+		landingPage = new LandingPage(DriverManager.getDriver());
 		landingPage.click_Btn();
 		System.out.println("User Clicks on the " + getStarted + "button on the application");
 	}
@@ -55,7 +55,7 @@ public class HomePageStepDefinitions {
 	public void user_is_on_home_page() throws InterruptedException {
 		 homePage.homepage();
 		// homePage=landingPage.click_Btn();
-		System.out.println("from homePage :  " + DriverFactory.getDriver().getCurrentUrl());
+		System.out.println("from homePage :  " + DriverManager.getDriver().getCurrentUrl());
 	}
 
 	@When("The user clicks on data structure dropdown before signin")
@@ -126,7 +126,7 @@ public class HomePageStepDefinitions {
 
 	@Then("The user should able to goto its respective page")
 	public void the_user_should_able_to_goto_its_respective_page() {
-		String title = DriverFactory.getDriver().getTitle();
+		String title = DriverManager.getDriver().getTitle();
 		assertEquals(title, expected);
 		if("Graph".equals(expected)) {
 			loginPage.sign_out();

@@ -11,17 +11,17 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import team.ninja.ds.algo.driver.factory.DriverFactory;
+import team.ninja.ds.algo.driver.manager.DriverManager;
 import team.ninja.ds.algo.page.object.DataStructurePage;
 import team.ninja.ds.algo.page.object.HomePage;
 import team.ninja.ds.algo.page.object.LoginPage;
 public class DataStructurePageStepDefinitions {
 	
 
-	private DataStructurePage dataStructurePage=new  DataStructurePage(DriverFactory.getDriver());
+	private DataStructurePage dataStructurePage=new  DataStructurePage(DriverManager.getDriver());
 	private HomePage homePage=HomePage.getInstance();
 	private LoginPage loginPage= LoginPage.getInstance();
-	private WebDriver driver=DriverFactory.getDriver();
+	private WebDriver driver=DriverManager.getDriver();
 	private SoftAssert softAssert=new SoftAssert();
 	private static String actualAlertText;
 	

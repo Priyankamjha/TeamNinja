@@ -13,8 +13,8 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import team.ninja.ds.algo.driver.factory.DriverFactory;
 import team.ninja.ds.algo.page.object.LandingPage;
+import team.ninja.ds.algo.driver.manager.DriverManager;
 import team.ninja.ds.algo.page.object.HomePage;
 import team.ninja.ds.algo.page.object.RegisterPage;
 import team.ninja.ds.algo.page.object.LoginPage;
@@ -23,8 +23,8 @@ import team.ninja.ds.algo.utilities.ExcelReader;
 
 public class RegisterPageStepDefinitions {
 	private HomePage homePage = HomePage.getInstance();	
-	private RegisterPage registerPage=new RegisterPage(DriverFactory.getDriver());
-	private WebDriver driver=DriverFactory.getDriver();
+	private RegisterPage registerPage=new RegisterPage(DriverManager.getDriver());
+	private WebDriver driver=DriverManager.getDriver();
 	private ConfigReader reader=new ConfigReader();
 	private LoginPage loginPage=LoginPage.getInstance();
 	Properties prop;

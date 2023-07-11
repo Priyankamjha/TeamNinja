@@ -1,4 +1,4 @@
-package team.ninja.ds.algo.driver.factory;
+package team.ninja.ds.algo.driver.manager;
 
 import java.time.Duration;
 
@@ -11,7 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class DriverFactory {
+public class DriverManager {
+	
 	public WebDriver driver;
 	WebDriverWait explicit_wait_Example;
 	public static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();

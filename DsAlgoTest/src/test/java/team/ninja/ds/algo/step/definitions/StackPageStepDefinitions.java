@@ -12,7 +12,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import team.ninja.ds.algo.driver.factory.DriverFactory;
+import team.ninja.ds.algo.driver.manager.DriverManager;
 import team.ninja.ds.algo.page.object.HomePage;
 import team.ninja.ds.algo.page.object.LoginPage;
 import team.ninja.ds.algo.page.object.StackPage;
@@ -21,11 +21,11 @@ import team.ninja.ds.algo.utilities.ExcelReader;
 public class StackPageStepDefinitions {
 	private HomePage homepage = HomePage.getInstance();
 	private LoginPage loginpage = LoginPage.getInstance();
-	private StackPage stackPage = new StackPage(DriverFactory.getDriver());
+	private StackPage stackPage = new StackPage(DriverManager.getDriver());
 	private String code;
 	private String actualresult;;
 	private String expectedresult;
-	WebDriver driver = DriverFactory.getDriver();
+	WebDriver driver = DriverManager.getDriver();
 
 	@Given("The user is on the {string} page after logged in")
 	public void the_user_is_on_the_page_after_logged_in(String string) {

@@ -11,7 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import team.ninja.ds.algo.driver.factory.DriverFactory;
+import team.ninja.ds.algo.driver.manager.DriverManager;
 import team.ninja.ds.algo.utilities.ConfigReader;
 
 public class HomePage {
@@ -52,7 +52,7 @@ public class HomePage {
 
 	public static HomePage getInstance() {
 		if(homePage==null) {
-			homePage = new HomePage(DriverFactory.getDriver());
+			homePage = new HomePage(DriverManager.getDriver());
 		} 
 		
 		return homePage;

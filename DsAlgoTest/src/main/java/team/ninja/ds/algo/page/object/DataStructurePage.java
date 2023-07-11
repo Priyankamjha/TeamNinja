@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import team.ninja.ds.algo.driver.factory.DriverFactory;
+import team.ninja.ds.algo.driver.manager.DriverManager;
 import team.ninja.ds.algo.utilities.ConfigReader;
 
 public class DataStructurePage {
@@ -54,7 +54,7 @@ public class DataStructurePage {
 	}
 
 	public void enterCode(String pythonCode) throws InterruptedException {
-		System.out.println("Debug URL = "+DriverFactory.getDriver().getCurrentUrl());
+		System.out.println("Debug URL = "+DriverManager.getDriver().getCurrentUrl());
 		try {
 			textEditor.sendKeys(pythonCode);
 		}catch(Exception e ){

@@ -10,12 +10,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import team.ninja.ds.algo.driver.factory.DriverFactory;
+import team.ninja.ds.algo.driver.manager.DriverManager;
 import team.ninja.ds.algo.utilities.PageUtils;
 
 public class LinkedListPage {
 
-	private WebDriver driver = DriverFactory.getDriver();
+	private WebDriver driver = DriverManager.getDriver();
 	private PageUtils pageUtil = new PageUtils();
 	private static String linked_list_url;
 	private static String linked_list_title;

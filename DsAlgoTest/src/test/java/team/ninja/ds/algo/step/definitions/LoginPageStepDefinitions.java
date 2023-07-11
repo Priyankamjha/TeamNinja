@@ -6,19 +6,19 @@ import org.testng.asserts.SoftAssert;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import team.ninja.ds.algo.driver.factory.DriverFactory;
 import team.ninja.ds.algo.page.object.LandingPage;
+import team.ninja.ds.algo.driver.manager.DriverManager;
 import team.ninja.ds.algo.page.object.HomePage;
 import team.ninja.ds.algo.page.object.RegisterPage;
 import team.ninja.ds.algo.page.object.LoginPage;
 import team.ninja.ds.algo.utilities.ConfigReader;
 
 public class LoginPageStepDefinitions {
-	private LandingPage landingPage=new LandingPage(DriverFactory.getDriver());
+	private LandingPage landingPage=new LandingPage(DriverManager.getDriver());
 	private HomePage homePage=HomePage.getInstance();
 	private LoginPage loginPage=LoginPage.getInstance();
-	private RegisterPage registerPage=new RegisterPage(DriverFactory.getDriver());
-	private WebDriver driver=DriverFactory.getDriver();
+	private RegisterPage registerPage=new RegisterPage(DriverManager.getDriver());
+	private WebDriver driver=DriverManager.getDriver();
 	private ConfigReader config=new ConfigReader();
 	private SoftAssert softAssert=new SoftAssert();
 	private static String error;

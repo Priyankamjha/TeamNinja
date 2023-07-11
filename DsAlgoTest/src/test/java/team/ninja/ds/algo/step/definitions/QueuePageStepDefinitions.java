@@ -3,17 +3,19 @@ package team.ninja.ds.algo.step.definitions;
 import static org.testng.Assert.assertEquals;
 import static team.ninja.ds.algo.constants.DsAlgoConstant.XL_QDATA_FILE_PATH;
 import static team.ninja.ds.algo.constants.DsAlgoConstant.queueUrl;
+import static team.ninja.ds.algo.constants.DsAlgoConstant.practiceQs;
 
 import java.util.List;
 import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.testng.Assert;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import team.ninja.ds.algo.driver.factory.DriverFactory;
+import team.ninja.ds.algo.driver.manager.DriverManager;
 import team.ninja.ds.algo.page.object.HomePage;
 import team.ninja.ds.algo.page.object.QueuePage;
 import team.ninja.ds.algo.utilities.ExcelReader;
@@ -23,7 +25,7 @@ public class QueuePageStepDefinitions {
     private static final Logger logger = LogManager.getLogger(QueuePageStepDefinitions.class);
 
 	private HomePage homePage = HomePage.getInstance();
-	private QueuePage qPage = new QueuePage(DriverFactory.getDriver());
+	private QueuePage qPage = new QueuePage(DriverManager.getDriver());
 
 	String expectedResult = null;
 	
@@ -40,7 +42,7 @@ public class QueuePageStepDefinitions {
 
 	@Then("The user directed to {string} page")
 	public void the_user_directed_to_page(String string) {
-		String title = DriverFactory.getDriver().getTitle();
+		String title = DriverManager.getDriver().getTitle();
 		System.out.println("Title = " + title);
 		assertEquals(title, string);
 	}
@@ -58,7 +60,7 @@ public class QueuePageStepDefinitions {
 	@Then("The user be directed to Queue Data Structure Page")
 	public void the_user_be_directed_to_queue_data_structure_page() {
 		// modification on feature flile
-		String actualURL = DriverFactory.getDriver().getCurrentUrl();
+		String actualURL = DriverManager.getDriver().getCurrentUrl();
 		System.out.println("actualURL  = " + actualURL);
 		assertEquals(actualURL, queueUrl);
 	}
@@ -108,7 +110,7 @@ public class QueuePageStepDefinitions {
 	public void the_user_should_be_presented_with_error_message_for_queue() {
 		String errorMessage = qPage.getAlertMessage();
 		System.out.println("errorMessage = " + errorMessage);
-		System.out.println("driver.getTitle() = " + DriverFactory.getDriver().getTitle());
+		System.out.println("driver.getTitle() = " + DriverManager.getDriver().getTitle());
 		assertEquals(errorMessage, expectedResult);
 	}	
 		
@@ -126,8 +128,7 @@ public class QueuePageStepDefinitions {
 
 	@Then("The user is directed to Practice page")
 	public void the_user_is_directed_to_practice_page() {
-		assertEquals("1", "2");
-		//qPage.navigateToPracticeQuestionsLink();
+		Assert.assertTrue(DriverManager.getDriver().getCurrentUrl().contains(practiceQs));
 	}
 
 }
