@@ -71,7 +71,7 @@ public class ArrayPage {
 			WebElement e = driver.switchTo().activeElement();
 			pageutil.entercode(driver, e, code);
 		} else {
-			editorInput.sendKeys(code);
+			editorInput.sendKeys(code );
 		}
 	}
 

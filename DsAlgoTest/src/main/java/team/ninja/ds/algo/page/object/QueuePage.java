@@ -63,7 +63,7 @@ public class QueuePage {
 	}
 
 	public void clickOnQueueItem() {
-		snooze(1);
+		//snooze(1);
 		menudropdown.click();
 		dropdown_queue_btn.click();
 	}

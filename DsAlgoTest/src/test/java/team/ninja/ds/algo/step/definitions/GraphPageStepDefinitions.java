@@ -59,7 +59,7 @@ public class GraphPageStepDefinitions {
 	public void user_directed_to_page_for_graph(String string) {
 		String title = DriverManager.getDriver().getTitle();
 		System.out.println("Title = " + title);
-		snooze(2);
+		//snooze(2);
 		assertEquals(title, string);
 	}
 

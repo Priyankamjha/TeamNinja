@@ -55,7 +55,7 @@ public class GraphPage {
 	}
 
 	public void clickOnGraphItem() {
-		snooze(1);
+		//snooze(1);
 		menudropdown.click();
 		dropdown_graph_btn.click();
 	}

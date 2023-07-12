@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DriverManager {
-	
+
 	public WebDriver driver;
 	WebDriverWait explicit_wait_Example;
 	public static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
@@ -22,10 +22,20 @@ public class DriverManager {
 
 		if (browser.equals("chrome")) {
 			WebDriverManager.chromedriver().setup();
+//			ChromeDriver chromeDriver = new ChromeDriver();
+
+//			String headlessOption = System.getProperty("headlessOption");
+//			System.out.println("headlessOption "+headlessOption);
+//			if (headlessOption != null && headlessOption.equals("false")) {
+//				chromeDriver = new ChromeDriver();
+//			} else {
+//				ChromeOptions options = new ChromeOptions();
+//				options.addArguments("--headless");
+//				chromeDriver = new ChromeDriver(options);
+//			}
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("--headless");
-			ChromeDriver chromeDriver = new ChromeDriver(options);
-			tlDriver.set(chromeDriver);
+			tlDriver.set(new ChromeDriver(options));
 		} else if (browser.equalsIgnoreCase("edge")) {
 			WebDriverManager.edgedriver().setup();
 			tlDriver.set(new EdgeDriver());

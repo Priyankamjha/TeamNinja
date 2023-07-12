@@ -28,7 +28,7 @@ public class PageUtils {
 	}
 
 	public void implicit_wait(WebDriver driver, WebElement e) {
-		new WebDriverWait(driver, Duration.ofSeconds(40)).until(ExpectedConditions.visibilityOf(e));
+		//new WebDriverWait(driver, Duration.ofSeconds(40)).until(ExpectedConditions.visibilityOf(e));
 	}
 
 	public void menu_click(WebDriver driver, List<WebElement> e, String option) {
@@ -43,11 +43,13 @@ public class PageUtils {
 	}
 
 	public void entercode(WebDriver driver, WebElement e, String code) {
-		mouse_action(driver, e);
-		for (int j = 0; j <= 40; j++) {
-			e.sendKeys(Keys.DELETE);
-		}
-		e.sendKeys(code);
+		e.sendKeys(Keys.HOME,Keys.chord(Keys.SHIFT,Keys.END),code);
+//		mouse_action(driver, e);
+//		System.out.println("e.getText() "+ e.getText());
+//		for (int j = 0; j <= 40; j++) {
+//			e.sendKeys(Keys.DELETE);
+//		}
+//		e.sendKeys(code);
 	}
 
 	public void mouse_action(WebDriver driver, WebElement e) {

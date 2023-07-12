@@ -50,7 +50,7 @@ public class StackPage {
 
 	public void tryedit_click() {
 		pageutil.scrolldown(driver);
-		pageutil.scrolldown(driver);
+		//pageutil.scrolldown(driver);
 		tryhere.click();
 	}
 
