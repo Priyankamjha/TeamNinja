@@ -14,7 +14,7 @@ import team.ninja.ds.algo.utilities.ConfigReader;
 
 public class DataStructurePage {
 
-	ConfigReader cr = new ConfigReader();
+	ConfigReader cr = ConfigReader.getInstance();
 	String homeurl = cr.homePage();
 	String alertText;
 

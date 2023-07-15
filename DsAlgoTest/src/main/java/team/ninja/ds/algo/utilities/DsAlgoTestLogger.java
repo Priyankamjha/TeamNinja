@@ -10,9 +10,12 @@ public class DsAlgoTestLogger {
 	public static void warn(String message) {
 		logger.warn(message);
 	}
-	
 	public static void error(String message) {
-		logger.info(message);
+		logger.error(message);
+	}
+	
+	public static void error(String message, Exception e) {
+		logger.error(message, e);
 	}
 	public static void fatal(String message) {
 		logger.fatal(message);

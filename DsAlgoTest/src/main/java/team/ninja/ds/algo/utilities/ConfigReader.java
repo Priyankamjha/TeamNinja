@@ -4,21 +4,35 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
+
+import team.ninja.ds.algo.driver.manager.DriverManager;
+import team.ninja.ds.algo.page.object.LoginPage;
+
 import static team.ninja.ds.algo.constants.DsAlgoConstant.CONFIG_FILE_PATH;
 
 public class ConfigReader {
+	private static ConfigReader configReader = null;
 
+	private ConfigReader() {
+		init_prop();
+	}
 	private static Properties prop;
+	public static ConfigReader getInstance() {
+		if(configReader==null) {
+			configReader = new ConfigReader();
+		} 
+		
+		return configReader;
+	}
 
-	public Properties init_prop() throws IOException {
+	public Properties init_prop()  {
 		prop = new Properties();
 		try {
 			FileInputStream ip = new FileInputStream(CONFIG_FILE_PATH);
 			prop.load(ip);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			DsAlgoTestLogger.error("Error in reading +"+CONFIG_FILE_PATH, e);
+			throw new RuntimeException(e);
 		}
 		return prop;
 	}
@@ -67,5 +81,8 @@ public class ConfigReader {
 		else
 			throw new RuntimeException("Excel data path missing");
 
+	}
+	public String getProperty(String key) {
+		return prop.getProperty(key);
 	}
 }

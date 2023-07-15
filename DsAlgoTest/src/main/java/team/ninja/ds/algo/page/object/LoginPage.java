@@ -14,7 +14,7 @@ public class LoginPage {
 	String msg;
 	private static LoginPage loginPage = null;
 	private boolean isUserLoggedin = false;
-	private ConfigReader reader=new ConfigReader();
+	private ConfigReader reader=ConfigReader.getInstance();
 
 	@FindBy(xpath = "//input[@id='id_username']")
 	private WebElement username;

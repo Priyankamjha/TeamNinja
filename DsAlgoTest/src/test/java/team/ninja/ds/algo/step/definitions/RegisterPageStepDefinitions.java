@@ -25,7 +25,7 @@ public class RegisterPageStepDefinitions {
 	private HomePage homePage = HomePage.getInstance();	
 	private RegisterPage registerPage=new RegisterPage(DriverManager.getDriver());
 	private WebDriver driver=DriverManager.getDriver();
-	private ConfigReader reader=new ConfigReader();
+	private ConfigReader reader=ConfigReader.getInstance();
 	private LoginPage loginPage=LoginPage.getInstance();
 	Properties prop;
 	WebDriverWait wait;

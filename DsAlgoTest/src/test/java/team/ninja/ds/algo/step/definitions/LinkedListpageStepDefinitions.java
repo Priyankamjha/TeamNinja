@@ -22,7 +22,7 @@ public class LinkedListpageStepDefinitions {
 	private LoginPage loginPage=LoginPage.getInstance();
 	private LinkedListPage linkedListPage=new LinkedListPage(DriverManager.getDriver());
 	private WebDriver driver=DriverManager.getDriver();
-	private ConfigReader config=new ConfigReader();
+	private ConfigReader config=ConfigReader.getInstance();
 	private SoftAssert softAssert=new SoftAssert();
 	private PageUtils pageUtil=new PageUtils();
 	private static String actualAlertText;

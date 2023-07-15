@@ -33,7 +33,7 @@ public class DsAlgoTestHooks {
 		DsAlgoTestLogger.info("Loading Config Properties ");
 	    driver = DriverManager.getDriver();
 	    if(isNull(driver)) {
-			configReader =new ConfigReader();
+			configReader =ConfigReader.getInstance();
 			prop=configReader.init_prop();		
 			String browserName=prop.getProperty("browser");
 			String geturl=prop.getProperty("url");

@@ -24,7 +24,7 @@ public class HomePageStepDefinitions {
 	private HomePage homePage = HomePage.getInstance();
 	private LoginPage loginPage = LoginPage.getInstance();
 	private WebDriver driver = DriverManager.getDriver();
-	private ConfigReader reader = new ConfigReader();
+	private ConfigReader reader = ConfigReader.getInstance();
 	String expected = null;
 	Properties prop;
 	WebDriverWait wait;

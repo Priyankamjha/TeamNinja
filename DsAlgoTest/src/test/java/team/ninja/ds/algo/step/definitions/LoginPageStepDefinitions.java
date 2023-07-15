@@ -19,7 +19,7 @@ public class LoginPageStepDefinitions {
 	private LoginPage loginPage=LoginPage.getInstance();
 	private RegisterPage registerPage=new RegisterPage(DriverManager.getDriver());
 	private WebDriver driver=DriverManager.getDriver();
-	private ConfigReader config=new ConfigReader();
+	private ConfigReader config=ConfigReader.getInstance();
 	private SoftAssert softAssert=new SoftAssert();
 	private static String error;
 	private static String result;
