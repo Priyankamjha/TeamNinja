@@ -75,7 +75,7 @@ public class ConfigReader {
 	}
 
 	public static String excelPath() {
-		String ExcelPath = prop.getProperty("ExceldataPath");
+		String ExcelPath = prop.getProperty("xlTestDataPath");
 		if (ExcelPath != null)
 			return ExcelPath;
 		else

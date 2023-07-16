@@ -34,12 +34,10 @@ public class ExcelReader {
 	}
 
 	private void loadAllTestData() {
-		String fileNames [] = new String [] {"Linked_listCode.xlsx", "programdata.xlsx","QueueTestData.xlsx","register.xlsx" };
+		String fileNames [] = new String [] {"All_Test_Data.xlsx"};
 		Map<String, List<String>> sheetNames = new HashMap<String, List<String>>();
-		sheetNames.put("Linked_listCode.xlsx", Arrays.asList("LLCLinkedList"));
-		sheetNames.put("programdata.xlsx", Arrays.asList("array", "practicequestion", "basicoperation", "application", "list"));
-		sheetNames.put("QueueTestData.xlsx", Arrays.asList("ValidPythonCode", "InvalidPythonCode"));
-		sheetNames.put("register.xlsx", Arrays.asList("validcredentials"));
+		sheetNames.put("All_Test_Data.xlsx", Arrays.asList("LLCLinkedList", "array", 
+				"practicequestion", "basicoperation", "application", "list", "ValidPythonCode", "InvalidPythonCode", "validcredentials"));
 		
 		String dataDir = "src/test/resources/Test_Data/";
 		for(String fileName: fileNames) {
@@ -56,6 +54,7 @@ public class ExcelReader {
 	public  List<Map<String, String>> getData(String excelFilePath, String sheetName){
 		List<Map<String, String>> data = allTestData.get(excelFilePath+sheetName);
 		if(data != null) {
+			System.out.println("Returning from cache");
 			return data;
 		} else {
 			Sheet sheet = getSheetByName(excelFilePath, sheetName);

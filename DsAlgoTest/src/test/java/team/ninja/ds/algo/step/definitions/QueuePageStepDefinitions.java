@@ -1,7 +1,7 @@
 package team.ninja.ds.algo.step.definitions;
 
 import static org.testng.Assert.assertEquals;
-import static team.ninja.ds.algo.constants.DsAlgoConstant.XL_QDATA_FILE_PATH;
+import static team.ninja.ds.algo.constants.DsAlgoConstant.XL_TEST_DATA_FILE_PATH;
 import static team.ninja.ds.algo.constants.DsAlgoConstant.queueUrl;
 import static team.ninja.ds.algo.constants.DsAlgoConstant.practiceQs;
 
@@ -75,7 +75,7 @@ public class QueuePageStepDefinitions {
 	@When("The user enter valid python code in tryEditor for queue from sheet {string} and {int}")
 	public void the_user_enter_valid_python_code_in_try_editor_for_queue_from_sheet_and(String sheetName, Integer rowNumber) {
 		ExcelReader excel = ExcelReader.getInstance();
-		List<Map<String, String>> list = excel.getData(XL_QDATA_FILE_PATH, sheetName);
+		List<Map<String, String>> list = excel.getData(XL_TEST_DATA_FILE_PATH, sheetName);
 		Map<String, String> dataMap = list.get(rowNumber);
 		String pythonCode = dataMap.get("pythonCode");
 		expectedResult = dataMap.get("Result");
@@ -99,7 +99,7 @@ public class QueuePageStepDefinitions {
 	@When("The user enter python code with invalid syntax in tryEditor  for queue from sheet {string} and {int}")
 	public void the_user_enter_python_code_with_invalid_syntax_in_try_editor_for_queue_from_sheet_and(String sheetName, Integer rowNumber) {
 		ExcelReader excel = ExcelReader.getInstance();
-		List<Map<String, String>> list = excel.getData(XL_QDATA_FILE_PATH, sheetName);
+		List<Map<String, String>> list = excel.getData(XL_TEST_DATA_FILE_PATH, sheetName);
 		Map<String, String> dataMap = list.get(rowNumber);
 		String pythonCode = dataMap.get("pythonCode");
 		expectedResult = dataMap.get("Result");

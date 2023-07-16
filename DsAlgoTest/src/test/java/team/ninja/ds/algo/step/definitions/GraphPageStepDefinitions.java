@@ -1,10 +1,9 @@
 package team.ninja.ds.algo.step.definitions;
 
 import static org.testng.Assert.assertEquals;
-import static team.ninja.ds.algo.constants.DsAlgoConstant.XL_QDATA_FILE_PATH;
+import static team.ninja.ds.algo.constants.DsAlgoConstant.XL_TEST_DATA_FILE_PATH;
 import static team.ninja.ds.algo.constants.DsAlgoConstant.graphPracticeQs;
 import static team.ninja.ds.algo.constants.DsAlgoConstant.graphUrl;
-import static team.ninja.ds.algo.utilities.DsAlgoUtil.snooze;
 
 import java.util.List;
 import java.util.Map;
@@ -15,9 +14,9 @@ import org.testng.Assert;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import team.ninja.ds.algo.page.object.HomePage;
 import team.ninja.ds.algo.driver.manager.DriverManager;
 import team.ninja.ds.algo.page.object.GraphPage;
+import team.ninja.ds.algo.page.object.HomePage;
 import team.ninja.ds.algo.utilities.ExcelReader;
 
 public class GraphPageStepDefinitions {
@@ -76,7 +75,7 @@ public class GraphPageStepDefinitions {
 		ExcelReader excel = ExcelReader.getInstance();
 		try {
 
-			List<Map<String, String>> list = excel.getData(XL_QDATA_FILE_PATH, Sheetname);
+			List<Map<String, String>> list = excel.getData(XL_TEST_DATA_FILE_PATH, Sheetname);
 			Map<String, String> dataMap = list.get(RowNumber);
 			String pythonCode = dataMap.get("pythonCode");
 			expectedResult = dataMap.get("Result");
@@ -103,7 +102,7 @@ public class GraphPageStepDefinitions {
 	public void the_user_enter_python_code_with_invalid_syntax_in_try_editor_for_graph_from_sheet_and(String Sheetname,
 			Integer RowNumber) {
 		ExcelReader excel = ExcelReader.getInstance();
-		List<Map<String, String>> list = excel.getData(XL_QDATA_FILE_PATH, Sheetname);
+		List<Map<String, String>> list = excel.getData(XL_TEST_DATA_FILE_PATH, Sheetname);
 		Map<String, String> dataMap = list.get(RowNumber);
 		String pythonCode = dataMap.get("pythonCode");
 		expectedResult = dataMap.get("Result");

@@ -6,7 +6,7 @@ public class DsAlgoConstant {
 	public static final String CONFIG_FILE_PATH="src/test/resources/test-config/Config.properties";
 
 	static ConfigReader configReader = ConfigReader.getInstance();
-	public static final String XL_QDATA_FILE_PATH=configReader.getProperty("quequeTestDataFilePath");
+	public static final String XL_TEST_DATA_FILE_PATH=configReader.getProperty("xlTestDataPath");
 	
 	public static final String homePageUrl =configReader.getProperty("homePageUrl");//added to test
 	public static final String queueUrl = configReader.getProperty("queueUrl");

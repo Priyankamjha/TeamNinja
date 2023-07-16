@@ -1,4 +1,6 @@
 package team.ninja.ds.algo.step.definitions;
+import static team.ninja.ds.algo.constants.DsAlgoConstant.XL_TEST_DATA_FILE_PATH;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -13,19 +15,16 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import team.ninja.ds.algo.page.object.LandingPage;
 import team.ninja.ds.algo.driver.manager.DriverManager;
 import team.ninja.ds.algo.page.object.HomePage;
-import team.ninja.ds.algo.page.object.RegisterPage;
 import team.ninja.ds.algo.page.object.LoginPage;
-import team.ninja.ds.algo.utilities.ConfigReader;
+import team.ninja.ds.algo.page.object.RegisterPage;
 import team.ninja.ds.algo.utilities.ExcelReader;
 
 public class RegisterPageStepDefinitions {
 	private HomePage homePage = HomePage.getInstance();	
 	private RegisterPage registerPage=new RegisterPage(DriverManager.getDriver());
 	private WebDriver driver=DriverManager.getDriver();
-	private ConfigReader reader=ConfigReader.getInstance();
 	private LoginPage loginPage=LoginPage.getInstance();
 	Properties prop;
 	WebDriverWait wait;
@@ -116,7 +115,7 @@ public class RegisterPageStepDefinitions {
 	@When("user enter the sheetname {string} and row number {int}")
 	public void user_enter_the_sheetname_and_row_number(String string, Integer int1) throws InvalidFormatException, IOException, InterruptedException {
 	    ExcelReader excel=ExcelReader.getInstance();
-	    List<Map<String,String>> list=excel.getData("src/test/resources/Test_Data/register.xlsx", "validcredentials");
+	    List<Map<String,String>> list=excel.getData(XL_TEST_DATA_FILE_PATH, "validcredentials");
 	    String uname=list.get(int1).get("username");
 	    String pwd=list.get(int1).get("password");
 	    String cpwd=list.get(int1).get("confirmpassword");

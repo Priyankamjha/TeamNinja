@@ -1,5 +1,7 @@
 package team.ninja.ds.algo.step.definitions;
 
+import static team.ninja.ds.algo.constants.DsAlgoConstant.XL_TEST_DATA_FILE_PATH;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -14,13 +16,11 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import team.ninja.ds.algo.driver.manager.DriverManager;
 import team.ninja.ds.algo.page.object.HomePage;
-import team.ninja.ds.algo.page.object.LoginPage;
 import team.ninja.ds.algo.page.object.StackPage;
 import team.ninja.ds.algo.utilities.ExcelReader;
 
 public class StackPageStepDefinitions {
 	private HomePage homepage = HomePage.getInstance();
-	private LoginPage loginpage = LoginPage.getInstance();
 	private StackPage stackPage = new StackPage(DriverManager.getDriver());
 	private String code;
 	private String actualresult;;
@@ -50,7 +50,7 @@ public class StackPageStepDefinitions {
 	public void the_user_enter_valid_python_code_in_stack_try_editor_from_sheet_and(String SheetName, Integer rowno)
 			throws InvalidFormatException, IOException, InterruptedException {
 		ExcelReader reader = ExcelReader.getInstance();
-		List<Map<String, String>> rdata = reader.getData("src/test/resources/Test_Data/programdata.xlsx", SheetName);
+		List<Map<String, String>> rdata = reader.getData(XL_TEST_DATA_FILE_PATH, SheetName);
 		code = rdata.get(rowno).get("Pythoncode");
 		expectedresult = rdata.get(rowno).get("Result");
 		System.out.println("Code:" + code);
@@ -88,7 +88,7 @@ public class StackPageStepDefinitions {
 	public void the_user_enter_python_code_with_invalid_syntax_in_try_editor_from_sheet_and(String SheetName,
 			Integer rowno) throws InvalidFormatException, IOException, InterruptedException {
 		ExcelReader reader = ExcelReader.getInstance();
-		List<Map<String, String>> rdata = reader.getData("src/test/resources/Test_Data/programdata.xlsx", SheetName);
+		List<Map<String, String>> rdata = reader.getData(XL_TEST_DATA_FILE_PATH, SheetName);
 		code = rdata.get(rowno).get("Pythoncode");
 		expectedresult = rdata.get(rowno).get("Result");
 		stackPage.enter_code(code);
