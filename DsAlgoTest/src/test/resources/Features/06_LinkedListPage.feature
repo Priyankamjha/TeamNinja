@@ -4,19 +4,14 @@ Feature: user validates the Linked List Page
   Background: User  Login with  valid "username" and "password"
     When The user is logged in with valid user id and password
 
-  #When The user clicks the Get Started button
-  #And user clicks on SignIn button he is directed to login page
-  #When User enters valid username "Team" and password "Ninjas123"
-  #And User clicks on login button
-  #Then It should navigate to the home page with a message " You are logged in  "
-  @pageverification
+  @Test_LinkedList_01
   Scenario: User selects the Linked List item and verifies the Page Title
     Given user is on Home Page
     And user clicks the Linked List getstart link
     Then user is on the Linked List Page
     And user checks for the title "Linked List" in the Linked List page
 
-  @validpythoncode
+  @Test_LinkedList_02
   Scenario Outline: User checks each of the topics in Linked List with valid python code
     Given user clicks the Linked List getstart link
     When The user select all option "<option>" and Verifies the tryeditor Page with the valid python code for each option  "<sheetName>" and <Rownumber>
@@ -32,7 +27,7 @@ Feature: user validates the Linked List Page
       | Insertion                       | LLCLinkedList |         0 |
       | Deletion                        | LLCLinkedList |         0 |
 
-  @invalidpythoncode
+  @Test_LinkedList_03
   Scenario Outline: User checks each of the topics in Linked List with invalid python code
     Given user clicks the Linked List getstart link
     When The user select all option "<option>" and Verifies the tryeditor Page with the Invalid python code for each option  "<sheetName>" and <Rownumber>
@@ -48,7 +43,7 @@ Feature: user validates the Linked List Page
       | Insertion                       | LLCLinkedList |         1 | SyntaxError: bad input on line |
       | Deletion                        | LLCLinkedList |         1 | SyntaxError: bad input on line |
 
-  @practice
+  @Test_LinkedList_04
   Scenario Outline: The user is able to navigate to Practice page
     Given user clicks the Linked List getstart link
     Then The user select all option "<option>"

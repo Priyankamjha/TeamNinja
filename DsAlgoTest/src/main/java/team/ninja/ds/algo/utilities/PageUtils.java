@@ -64,7 +64,7 @@ public class PageUtils {
 
 	public static String getPythonCodefromExcel(String sheetname, int rownumber)
 			throws InvalidFormatException, IOException, org.apache.poi.openxml4j.exceptions.InvalidFormatException {
-		ExcelReader reader = ExcelReader.getInstance();
+		TestDataCache reader = TestDataCache.getInstance();
 		List<Map<String, String>> testdata = reader.getData(ConfigReader.excelPath(), sheetname);
 		String result = testdata.get(rownumber).get("PythonCode");
 		// LoggerLoad.info("Expected result from Excel sheetname " + sheetname + " and "

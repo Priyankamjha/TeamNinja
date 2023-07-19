@@ -19,7 +19,7 @@ import team.ninja.ds.algo.driver.manager.DriverManager;
 import team.ninja.ds.algo.page.object.HomePage;
 import team.ninja.ds.algo.page.object.LoginPage;
 import team.ninja.ds.algo.page.object.RegisterPage;
-import team.ninja.ds.algo.utilities.ExcelReader;
+import team.ninja.ds.algo.utilities.TestDataCache;
 
 public class RegisterPageStepDefinitions {
 	private HomePage homePage = HomePage.getInstance();	
@@ -114,7 +114,7 @@ public class RegisterPageStepDefinitions {
 	
 	@When("user enter the sheetname {string} and row number {int}")
 	public void user_enter_the_sheetname_and_row_number(String string, Integer int1) throws InvalidFormatException, IOException, InterruptedException {
-	    ExcelReader excel=ExcelReader.getInstance();
+	    TestDataCache excel=TestDataCache.getInstance();
 	    List<Map<String,String>> list=excel.getData(XL_TEST_DATA_FILE_PATH, "validcredentials");
 	    String uname=list.get(int1).get("username");
 	    String pwd=list.get(int1).get("password");

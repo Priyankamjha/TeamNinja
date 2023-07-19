@@ -2,13 +2,9 @@
 Feature: Test Stack Page
 
   Background: The user is logged in to DS Algo portal
-   	When The user is logged in with valid user id and password
-    #Given The user opens DS Algo portal link
-    #When The user clicks the Get Started button
-    #And User is on Login page
-    #When User enters valid username "Team" and password "Ninjas123"
-    #And User clicks on login button
+    When The user is logged in with valid user id and password
 
+  @Test_stack_01
   Scenario Outline: The user is able to navigate to all options in stack page
     Given The user is on the "Stack" page after logged in
     When The user clicks "<options>" button in stack page
@@ -20,6 +16,7 @@ Feature: Test Stack Page
       | Implementation      |
       | Applications        |
 
+  @Test_stack_02
   Scenario Outline: The user is able to navigate to all options in stack page
     Given The user is on the "Stack" page after logged in
     When The user clicks "<options>" button in stack page
@@ -32,6 +29,7 @@ Feature: Test Stack Page
       | Implementation      |
       | Applications        |
 
+  @Test_stack_03
   Scenario Outline: The user is able stack run code in tryEditor
     Given The user is in a "<options>" stack page having an tryEditor with a Run button to test
     When The user enter valid python code in stack tryEditor from sheet "<Sheetname>" and <RowNumber>
@@ -44,6 +42,7 @@ Feature: Test Stack Page
       | Implementation      | list           |         0 |
       | Implementation      | basicoperation |         0 |
 
+  @Test_stack_04
   Scenario Outline: The user is able run code in tryEditor
     Given The user is in a "<options>" stack page having an tryEditor with a Run button to test
     When The user enter python code with invalid syntax in stack tryEditor from sheet "<Sheetname>" and <RowNumber>

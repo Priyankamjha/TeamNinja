@@ -4,7 +4,7 @@ Feature: Launch Browser and Test Home Page
   Background: 
     When The user clicks the Get Started button
 
-  @scenario1
+  @Test_Hompage_01
   Scenario Outline: User is on Home Page and clicks on any dropdown "<value>" without sign in
     Given user is on Home Page
     When The user clicks on data structure dropdown before signin
@@ -20,6 +20,7 @@ Feature: Launch Browser and Test Home Page
       | Tree        |
       | Graph       |
 
+  @Test_Hompage_02
   Scenario Outline: User is on Home Page and clicks on any getStarted link "<value>" without sign in
     Given user is on Home Page
     When The user click any of the Get started link before signin "<value>" in home page
@@ -35,7 +36,7 @@ Feature: Launch Browser and Test Home Page
       | Tree                         |
       | Graph                        |
 
-  @Login
+  @Test_Hompage_03
   Scenario: User is on Home page and Clicks on Signin
     Given user is on Home Page
     When user clicks on SignIn button he is directed to login page
@@ -46,7 +47,7 @@ Feature: Launch Browser and Test Home Page
     When user clicks on Register button he is directed to register page
     Then user validates the register page
 
-  @RegisterUrl
+  @Test_Hompage_04
   Scenario Outline: User is on Home Page and clicks on any getStarted link "<value>" with sign in
     Given user is on Home Page
     When The user click any of the Get started link after signin "<value>" in home page

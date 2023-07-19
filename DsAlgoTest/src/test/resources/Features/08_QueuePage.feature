@@ -2,24 +2,19 @@
 Feature: Queue page Validation
 
   Background: User  Login with  valid "username" and "password"
-   	When The user is logged in with valid user id and password
-    #When The user clicks the Get Started button
-    #And user clicks on SignIn button he is directed to login page
-    #When User enters valid username "Team" and password "Ninjas123"
-    #And User clicks on login button
-    #Then It should navigate to the home page with a message " You are logged in  "
-    
-@Test_queue_01
+    When The user is logged in with valid user id and password
+
+  @Test_queue_01
   Scenario: The user is able to navigate to Queue Data Structure Page
     Given The user is on homepage
     When The user clicks the queue item from the drop down menu
     Then The user be directed to Queue Data Structure Page
 
-@Test_queue_02
+  @Test_queue_02
   Scenario Outline: The user is able to navigate to all options in queue page
     Given The user is on the Queue page after logged in
     When The user clicks "<options>" link
-    Then The user directed to "<options>" page 
+    Then The user directed to "<options>" page
 
     Examples: 
       | options                                |
@@ -27,7 +22,6 @@ Feature: Queue page Validation
       | Implementation using collections.deque |
       | Implementation using array             |
       | Queue Operations                       |
-
 
   @Test_queue_03
   Scenario Outline: The user is able to test run valid code in tryEditor

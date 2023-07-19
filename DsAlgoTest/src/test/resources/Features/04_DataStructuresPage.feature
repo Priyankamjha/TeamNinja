@@ -3,12 +3,8 @@ Feature: Data Structure page validation dsalgo
 
   Background: User  Login with  valid "username" and "password"
   	When The user is logged in with valid user id and password
-    #When The user clicks the Get Started button
-    #And user clicks on SignIn button he is directed to login page
-    #When User enters valid username "Team" and password "Ninjas123"
-    #And User clicks on login button
-    #Then It should navigate to the home page with a message " You are logged in  "
 
+  @Test_DataStructure_01
   Scenario: User clicks on datastructure page and checks with valid python code
     Given user is on Home Page
     When user clicks on datastructure getstarted
@@ -21,6 +17,7 @@ Feature: Data Structure page validation dsalgo
       | print"DataStructure Introduction" |
     When user clicks run button and goes to home page
 
+  @Test_DataStructure_02
   Scenario: User clicks on datastructure page and checks with invalid python code
     Given user is on Home Page
     When user clicks on datastructure getstarted

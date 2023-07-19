@@ -17,7 +17,7 @@ import io.cucumber.java.en.When;
 import team.ninja.ds.algo.driver.manager.DriverManager;
 import team.ninja.ds.algo.page.object.GraphPage;
 import team.ninja.ds.algo.page.object.HomePage;
-import team.ninja.ds.algo.utilities.ExcelReader;
+import team.ninja.ds.algo.utilities.TestDataCache;
 
 public class GraphPageStepDefinitions {
 
@@ -72,7 +72,7 @@ public class GraphPageStepDefinitions {
 	@When("The user enter valid python code in tryEditor for graph from sheet {string} and {int}")
 	public void the_user_enter_valid_python_code_in_try_editor_for_graph_from_sheet_and(String Sheetname,
 			Integer RowNumber) {
-		ExcelReader excel = ExcelReader.getInstance();
+		TestDataCache excel = TestDataCache.getInstance();
 		try {
 
 			List<Map<String, String>> list = excel.getData(XL_TEST_DATA_FILE_PATH, Sheetname);
@@ -101,7 +101,7 @@ public class GraphPageStepDefinitions {
 	@When("The user enter python code with invalid syntax in tryEditor  for graph from sheet {string} and {int}")
 	public void the_user_enter_python_code_with_invalid_syntax_in_try_editor_for_graph_from_sheet_and(String Sheetname,
 			Integer RowNumber) {
-		ExcelReader excel = ExcelReader.getInstance();
+		TestDataCache excel = TestDataCache.getInstance();
 		List<Map<String, String>> list = excel.getData(XL_TEST_DATA_FILE_PATH, Sheetname);
 		Map<String, String> dataMap = list.get(RowNumber);
 		String pythonCode = dataMap.get("pythonCode");

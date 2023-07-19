@@ -5,21 +5,25 @@ Feature: Login Action
     Given The user opens DS Algo portal link
     When The user clicks the Get Started button
 
+  @Test_Login_01
   Scenario: User is on Home page and Clicks on Signins
     Given user is on Home Page
     When user clicks on SignIn button he is directed to login page
     Then user validates the login page
 
+  @Test_Login_02
   Scenario: To verify SignIn with Empty fields
     Given User is on Login page
     When User clicks on login button with all empty field
     Then User verify the message at username as "Please fill out this field."
 
+  @Test_Login_03
   Scenario: User is on Home page and Clicks on Register
     Given user is on Home Page
     When user clicks on Register button he is directed to register page
     Then user validates the register page
 
+  @Test_Login_04
   Scenario Outline: To verify SignIn with invalid "<username>" and "<password> and gets the result "<result>"
     Given User is on Login page
     When User enters invalid username as "<username>" and password as "<password>" and gets the result "<result>"
@@ -32,6 +36,7 @@ Feature: Login Action
       | asdfger  | @@@@     | Invalid Username and Password |
       | ER@$     | sdkfsk12 | Invalid Username and Password |
 
+  @Test_Login_05
   Scenario Outline: User  Login with  valid "<username>" and "<password>"
     Given User is on Login page
     When User enters valid username "<username>" and password "<password>"
@@ -42,16 +47,18 @@ Feature: Login Action
       | username | password  |
       | Team     | Ninjas123 |
 
-  @Tag
+  @Test_Login_06
   Scenario: Successful LogOut
     When User clicks on signout
     Then Message displayed LoggedOut Successfully
 
+  @Test_Login_07
   Scenario: To verify SignIn with username only
     Given User is on Login page
     When User clicks on login button with username as "numpy" only
     Then User verify the message at password as "Please fill out this field."
 
+  @Test_Login_08
   Scenario: To verify SignIn with password only
     Given User is on Login page
     When User clicks on login button with password as "numpy" only

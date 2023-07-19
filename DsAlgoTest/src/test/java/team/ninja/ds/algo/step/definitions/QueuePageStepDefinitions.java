@@ -18,7 +18,7 @@ import io.cucumber.java.en.When;
 import team.ninja.ds.algo.driver.manager.DriverManager;
 import team.ninja.ds.algo.page.object.HomePage;
 import team.ninja.ds.algo.page.object.QueuePage;
-import team.ninja.ds.algo.utilities.ExcelReader;
+import team.ninja.ds.algo.utilities.TestDataCache;
 
 public class QueuePageStepDefinitions {
 
@@ -74,7 +74,7 @@ public class QueuePageStepDefinitions {
 	
 	@When("The user enter valid python code in tryEditor for queue from sheet {string} and {int}")
 	public void the_user_enter_valid_python_code_in_try_editor_for_queue_from_sheet_and(String sheetName, Integer rowNumber) {
-		ExcelReader excel = ExcelReader.getInstance();
+		TestDataCache excel = TestDataCache.getInstance();
 		List<Map<String, String>> list = excel.getData(XL_TEST_DATA_FILE_PATH, sheetName);
 		Map<String, String> dataMap = list.get(rowNumber);
 		String pythonCode = dataMap.get("pythonCode");
@@ -98,7 +98,7 @@ public class QueuePageStepDefinitions {
 
 	@When("The user enter python code with invalid syntax in tryEditor  for queue from sheet {string} and {int}")
 	public void the_user_enter_python_code_with_invalid_syntax_in_try_editor_for_queue_from_sheet_and(String sheetName, Integer rowNumber) {
-		ExcelReader excel = ExcelReader.getInstance();
+		TestDataCache excel = TestDataCache.getInstance();
 		List<Map<String, String>> list = excel.getData(XL_TEST_DATA_FILE_PATH, sheetName);
 		Map<String, String> dataMap = list.get(rowNumber);
 		String pythonCode = dataMap.get("pythonCode");

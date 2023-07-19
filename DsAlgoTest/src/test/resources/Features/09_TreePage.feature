@@ -3,12 +3,8 @@ Feature: Test Tree Page
 
   Background: The user is logged in to DS Algo portal
    	When The user is logged in with valid user id and password
-    #Given The user opens DS Algo portal link
-    #When The user clicks the Get Started button
-    #And User is on Login page
-    #When User enters valid username "Team" and password "Ninjas123"
-    #And User clicks on login button
 
+  @Test_Tree_01
   Scenario Outline: The user is able to navigate to all options in tree page
     Given The user is on the "Tree" tree page after logged in
     When The user clicks "<options>" button in tree page
@@ -30,6 +26,7 @@ Feature: Test Tree Page
       | Binary Search Trees            |
       | Implementation Of BST          |
 
+  @Test_Tree_02
   Scenario Outline: The user is able to navigate to all options in tree page
     Given The user is on the "Tree" tree page after logged in
     When The user clicks "<options>" button in tree page
@@ -52,6 +49,7 @@ Feature: Test Tree Page
       | Binary Search Trees            |
       | Implementation Of BST          |
 
+  @Test_Tree_03
   Scenario Outline: The user is able tree run code in tryEditor
     Given The user is in a "<options>" tree page having an tryEditor with a Run button to test
     When The user enter valid python code in tree tryEditor from sheet "<Sheetname>" and <RowNumber>
@@ -74,7 +72,7 @@ Feature: Test Tree Page
       | Binary Search Trees            | array     |         0 |
       | Implementation Of BST          | array     |         0 |
 
-  @Test01
+  @Test_Tree_04
   Scenario Outline: The user is able run code in tryEditor
     Given The user is in a "<options>" tree page having an tryEditor with a Run button to test
     When The user enter python code with invalid syntax in tree tryEditor from sheet "<Sheetname>" and <RowNumber>
@@ -97,6 +95,7 @@ Feature: Test Tree Page
       | Binary Search Trees            | array     |         1 |
       | Implementation Of BST          | array     |         1 |
 
+  @Test_Tree_05
   Scenario: The user is able to navigate to Practice page
     Given The user is on the type of tree after logged in
     When The user clicks tree Practice Questions link

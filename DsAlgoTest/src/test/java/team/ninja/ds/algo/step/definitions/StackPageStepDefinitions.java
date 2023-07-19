@@ -17,7 +17,7 @@ import io.cucumber.java.en.When;
 import team.ninja.ds.algo.driver.manager.DriverManager;
 import team.ninja.ds.algo.page.object.HomePage;
 import team.ninja.ds.algo.page.object.StackPage;
-import team.ninja.ds.algo.utilities.ExcelReader;
+import team.ninja.ds.algo.utilities.TestDataCache;
 
 public class StackPageStepDefinitions {
 	private HomePage homepage = HomePage.getInstance();
@@ -49,7 +49,7 @@ public class StackPageStepDefinitions {
 	@When("The user enter valid python code in stack tryEditor from sheet {string} and {int}")
 	public void the_user_enter_valid_python_code_in_stack_try_editor_from_sheet_and(String SheetName, Integer rowno)
 			throws InvalidFormatException, IOException, InterruptedException {
-		ExcelReader reader = ExcelReader.getInstance();
+		TestDataCache reader = TestDataCache.getInstance();
 		List<Map<String, String>> rdata = reader.getData(XL_TEST_DATA_FILE_PATH, SheetName);
 		code = rdata.get(rowno).get("Pythoncode");
 		expectedresult = rdata.get(rowno).get("Result");
@@ -87,7 +87,7 @@ public class StackPageStepDefinitions {
 	@When("The user enter python code with invalid syntax in stack tryEditor from sheet {string} and {int}")
 	public void the_user_enter_python_code_with_invalid_syntax_in_try_editor_from_sheet_and(String SheetName,
 			Integer rowno) throws InvalidFormatException, IOException, InterruptedException {
-		ExcelReader reader = ExcelReader.getInstance();
+		TestDataCache reader = TestDataCache.getInstance();
 		List<Map<String, String>> rdata = reader.getData(XL_TEST_DATA_FILE_PATH, SheetName);
 		code = rdata.get(rowno).get("Pythoncode");
 		expectedresult = rdata.get(rowno).get("Result");

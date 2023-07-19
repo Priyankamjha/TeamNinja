@@ -17,18 +17,18 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.ss.util.NumberToTextConverter;
-public class ExcelReader {
+public class TestDataCache {
 	
 	Map<String, List<Map<String, String>>> allTestData = new HashMap();
-	private static ExcelReader excelReader = null;
+	private static TestDataCache excelReader = null;
 
-	private ExcelReader() {
+	private TestDataCache() {
 		loadAllTestData();
 	}
 	
-	public static ExcelReader getInstance() {
+	public static TestDataCache getInstance() {
 		if(excelReader==null) {
-			excelReader = new ExcelReader();
+			excelReader = new TestDataCache();
 		} 
 		return excelReader;
 	}
@@ -54,7 +54,6 @@ public class ExcelReader {
 	public  List<Map<String, String>> getData(String excelFilePath, String sheetName){
 		List<Map<String, String>> data = allTestData.get(excelFilePath+sheetName);
 		if(data != null) {
-			System.out.println("Returning from cache");
 			return data;
 		} else {
 			Sheet sheet = getSheetByName(excelFilePath, sheetName);

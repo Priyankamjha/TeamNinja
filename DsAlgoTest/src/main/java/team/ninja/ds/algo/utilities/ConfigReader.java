@@ -13,7 +13,7 @@ import static team.ninja.ds.algo.constants.DsAlgoConstant.CONFIG_FILE_PATH;
 public class ConfigReader {
 	private static ConfigReader configReader = null;
 
-	private ConfigReader() {
+	public ConfigReader() {
 		init_prop();
 	}
 	private static Properties prop;

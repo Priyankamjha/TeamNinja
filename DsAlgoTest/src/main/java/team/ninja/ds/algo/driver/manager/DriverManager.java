@@ -15,33 +15,22 @@ public class DriverManager {
 
 	public WebDriver driver;
 	WebDriverWait explicit_wait_Example;
-	public static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
+	public static ThreadLocal<WebDriver> threadLocalDriver = new ThreadLocal<>();
 
 	public static WebDriver init_driver(String browser, String url) {
 		System.out.println("driver : initializing the driver first");
 
 		if (browser.equals("chrome")) {
 			WebDriverManager.chromedriver().setup();
-//			ChromeDriver chromeDriver = new ChromeDriver();
-
-//			String headlessOption = System.getProperty("headlessOption");
-//			System.out.println("headlessOption "+headlessOption);
-//			if (headlessOption != null && headlessOption.equals("false")) {
-//				chromeDriver = new ChromeDriver();
-//			} else {
-//				ChromeOptions options = new ChromeOptions();
-//				options.addArguments("--headless");
-//				chromeDriver = new ChromeDriver(options);
-//			}
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("--headless");
-			tlDriver.set(new ChromeDriver(options));
+			threadLocalDriver.set(new ChromeDriver(options));
 		} else if (browser.equalsIgnoreCase("edge")) {
 			WebDriverManager.edgedriver().setup();
-			tlDriver.set(new EdgeDriver());
+			threadLocalDriver.set(new EdgeDriver());
 		} else if (browser.equals("firefox")) {
 			WebDriverManager.firefoxdriver().setup();
-			tlDriver.set(new FirefoxDriver());
+			threadLocalDriver.set(new FirefoxDriver());
 		} else {
 			System.out.println("Please pass in the browser");
 		}
@@ -53,8 +42,7 @@ public class DriverManager {
 		return getDriver();
 	}
 
-//this is used to get the driver with thread local
 	public static synchronized WebDriver getDriver() {
-		return tlDriver.get();
+		return threadLocalDriver.get();
 	}
 }

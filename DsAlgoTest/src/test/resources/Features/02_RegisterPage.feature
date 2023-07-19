@@ -5,12 +5,13 @@ Feature: Registration verification and validation
     Given The user opens DS Algo portal link
     When The user clicks the Get Started button
 
-  @tag
+  @Test_Registration_01
   Scenario: To verify Register Form with Empty fields
     Given The user opens Register Page
     When User click Register with all empty field
     Then It should display an error "Please fill out this field." below username textbox
 
+  @Test_Registration_02
   Scenario: The user is presented with error message for empty fields below password textbox
     Given The user opens Register Page
     When The user clicks Register button after entering username with other fields empty
@@ -18,6 +19,7 @@ Feature: Registration verification and validation
       | Sdet@1234 |
     Then It should display an error "Please fill out this field." below password textbox
 
+  @Test_Registration_03
   Scenario Outline: The user is presented with error message for empty fields below username textbox
     Given The user opens Register Page
     When The user clicks Register button after entering password with other fields empty
@@ -25,6 +27,7 @@ Feature: Registration verification and validation
       | Sdet1234 |
     Then It should display an error "Please fill out this field." below username textbox
 
+  @Test_Registration_04
   Scenario Outline: The user is presented with error message for empty fields above Password Confirmation textbox
     Given The user opens Register Page
     When The user clicks Register button after entering confirmation password with other fields empty
@@ -32,6 +35,7 @@ Feature: Registration verification and validation
       | Sdet1234         |
     Then It should display an error "Please fill out this field." below Password Confirmation textbox
 
+  @Test_Registration_05
   Scenario Outline: To verify Register Form with username and password only
     Given The user opens Register Page
     When User enters username and password only and click register
@@ -39,6 +43,7 @@ Feature: Registration verification and validation
       | Unumpy   | Pnumpy   |
     Then User verify the message at confirmpassword on Register Page as "Please fill out this field."
 
+  @Test_Registration_06
   Scenario Outline: To verify Register Form with invalid Credentials
     Given The user opens Register Page
     When user enter invalid "<username>","<password>" and "<confirmpassword>"
@@ -54,6 +59,7 @@ Feature: Registration verification and validation
       | Numpy@sdet | asdf       | asdf            |
       | Numpy@sdet | welcome1   | welcome1        |
 
+  @Test_Registration_07
   Scenario Outline: to register with all the data
     Given The user opens Register Page
     When user enter the sheetname "<sheetname>" and row number <rownum>
@@ -61,4 +67,4 @@ Feature: Registration verification and validation
 
     Examples: 
       | sheetname        | rownum |
-      #| validcredentials |      0 |
+      | validcredentials |      0 |
