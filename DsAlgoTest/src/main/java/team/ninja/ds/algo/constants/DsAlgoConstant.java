@@ -22,5 +22,6 @@ public class DsAlgoConstant {
 	public static final String graphRepLink = configReader.getProperty("graphRepLink");
 	public static final String graphPracticeQs = configReader.getProperty("graphPracticeQs");
 	
+	public static final String test = "test";
 	
 }
